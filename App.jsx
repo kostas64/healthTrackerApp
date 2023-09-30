@@ -1,30 +1,42 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
+import BottomStack from './src/router/BottomTab';
+import {L_SPACE, XL_SPACE} from './src/assets/constants';
 
 const App = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>123</Text>
-    </View>
+    <SafeAreaProvider style={{flex: 1}}>
+      <StatusBar
+        translucent
+        barStyle={'dark-content'}
+        backgroundColor={'transparent'}
+      />
+      <NavigationContainer>
+        <BottomStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    paddingTop: 3 * XL_SPACE,
+    marginHorizontal: 2 * L_SPACE,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  boxContainer: {
+    marginTop: 3 * L_SPACE,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  marginTopXL: {
+    marginTop: XL_SPACE,
   },
-  highlight: {
-    fontWeight: '700',
+  marginTopXXL: {
+    marginTop: 2 * XL_SPACE,
   },
 });
 
