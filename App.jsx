@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import BottomStack from './src/router/BottomTab';
+import StatusBarManager from './src/components/StatusBarManager';
 
 const App = () => {
   return (
