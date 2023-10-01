@@ -63,6 +63,7 @@ const TabBar = ({state, descriptors, navigation}) => {
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
+            disabled={isFocused}
             onLongPress={onLongPress}
             style={[styles.tabContainer, {opacity}]}>
             {route.name !== 'Train' ? (
