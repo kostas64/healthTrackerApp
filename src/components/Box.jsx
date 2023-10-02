@@ -1,8 +1,8 @@
 import React from 'react';
 import * as shape from 'd3-shape';
+import {AreaChart} from 'react-native-svg-charts';
 import {StackedBarChart} from 'react-native-svg-charts';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import {AreaChart, ProgressCircle} from 'react-native-svg-charts';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import {Gradient} from './Gradient';
 import {L_SPACE, WIDTH, XL_SPACE, colors} from '../assets/constants';
@@ -29,7 +29,8 @@ const Box = ({
   };
 
   return (
-    <View style={[border, {backgroundColor: bgColor}, styles.container]}>
+    <TouchableOpacity
+      style={[border, {backgroundColor: bgColor}, styles.container]}>
       {/* Label & Icon */}
       <View style={styles.rowBetween}>
         <Text style={[styles.title, textColor]}>{title}</Text>
@@ -74,7 +75,7 @@ const Box = ({
         <Text style={[styles.title, textColor]}>{bottomTitle}</Text>
         <Text style={styles.footerSubtitle}>{bottomSubtitle}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
