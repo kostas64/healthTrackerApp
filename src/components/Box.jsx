@@ -7,6 +7,7 @@ import {AreaChart, ProgressCircle} from 'react-native-svg-charts';
 import {Gradient} from './Gradient';
 import {L_SPACE, WIDTH, XL_SPACE, colors} from '../assets/constants';
 import {bpm, water, waterClrs, waterKeys} from '../assets/data';
+import ProgressBox from './ProgressBox';
 
 const Box = ({
   isDark = false,
@@ -64,15 +65,7 @@ const Box = ({
 
       {isDark && (
         <View style={{marginVertical: XL_SPACE}}>
-          <ProgressCircle
-            style={styles.chartHeight}
-            progress={0.5}
-            backgroundColor={colors.lightPurple}
-            progressColor={'white'}
-            startAngle={0}
-            strokeWidth={10}
-          />
-          <Text style={styles.percentageLabel}>{`50%`}</Text>
+          <ProgressBox />
         </View>
       )}
 
