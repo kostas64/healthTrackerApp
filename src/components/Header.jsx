@@ -5,15 +5,15 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {images} from '../assets/images';
 import {L_SPACE, M_SPACE, colors} from '../assets/constants';
 
-const Header = () => {
+const Header = ({title, subtitle}) => {
   const insets = useSafeAreaInsets();
   const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
 
   return (
     <View style={[styles.rowBetween, {paddingTop, paddingBottom: M_SPACE}]}>
       <View>
-        <Text style={styles.title}>For today</Text>
-        <Text style={styles.subtitle}>Good morning, John!</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.subtitle}>{subtitle}</Text>
       </View>
       <Image source={images.me} style={styles.profile} />
     </View>

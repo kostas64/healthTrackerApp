@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+
+import Header from '../components/Header';
 
 const Stats = () => {
   return (
     <View style={styles.container}>
-      <Text>Stats</Text>
+      <Header title={'Your activities'} subtitle={'Today'} />
     </View>
   );
 };

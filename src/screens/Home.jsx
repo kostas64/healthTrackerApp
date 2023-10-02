@@ -9,7 +9,7 @@ import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 const Home = () => {
   return (
     <View style={styles.outContainer}>
-      <Header />
+      <Header title={'For today'} subtitle={'Good morning, John!'} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingBottom: 24}}
