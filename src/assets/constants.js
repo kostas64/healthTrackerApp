@@ -1,4 +1,4 @@
-import {Dimensions} from 'react-native';
+import {Platform, Dimensions} from 'react-native';
 
 export const colors = {
   black: 'black',
@@ -6,10 +6,14 @@ export const colors = {
   purple: 'rgba(82,67,172,1)',
   lightPurple: '#7569be',
   veryLightPurple: '#dcd8ee',
+  lightestPurple: 'rgb(243,242,249)',
   lightRed: 'rgb(236,145,148)',
   cyan: '#0fbefb',
   orange: '#ff8354',
 };
+
+export const isIOS = Platform.OS === 'ios';
+export const isAndroid = Platform.OS === 'android';
 
 export const S_SPACE = 4;
 export const M_SPACE = 8;
