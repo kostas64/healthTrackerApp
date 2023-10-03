@@ -94,10 +94,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '600',
+    fontFamily: 'Rubik-Medium',
   },
   footerSubtitle: {
-    fontWeight: '400',
+    fontFamily: 'Rubik-Regular',
     color: colors.lightGrey,
   },
   percentageLabel: {

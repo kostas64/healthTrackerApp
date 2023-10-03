@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+
+import Header from '../components/Header';
 
 const Achievements = () => {
   return (
     <View style={styles.container}>
-      <Text>Achievements</Text>
+      <Header title={'Your achievements'} />
     </View>
   );
 };

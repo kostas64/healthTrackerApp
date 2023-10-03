@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   percentageLabel: {
     fontSize: 18,
-    fontWeight: '700',
+    fontFamily: 'Rubik-Medium',
     textAlign: 'center',
     position: 'absolute',
     alignSelf: 'center',

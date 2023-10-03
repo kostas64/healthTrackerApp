@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {images} from '../assets/images';
-import {L_SPACE, M_SPACE, colors} from '../assets/constants';
+import {L_SPACE, M_SPACE, colors, isIOS} from '../assets/constants';
 
 const Header = ({title, subtitle}) => {
   const insets = useSafeAreaInsets();
@@ -13,7 +13,7 @@ const Header = ({title, subtitle}) => {
     <View style={[styles.rowBetween, {paddingTop, paddingBottom: M_SPACE}]}>
       <View>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
+        {!!subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
       </View>
       <Image source={images.me} style={styles.profile} />
     </View>
@@ -24,20 +24,19 @@ const styles = StyleSheet.create({
   rowBetween: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginHorizontal: 24,
   },
   title: {
     color: 'black',
-    fontWeight: '700',
+    fontFamily: 'Rubik-SemiBold',
     fontSize: 26,
-    letterSpacing: 0.3,
   },
   subtitle: {
     color: colors.lightGrey,
-    fontWeight: '400',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
-    letterSpacing: 0.3,
-    marginTop: 4,
+    marginTop: isIOS ? 4 : 0,
   },
   profile: {
     height: 52,

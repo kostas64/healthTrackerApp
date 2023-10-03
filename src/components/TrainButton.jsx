@@ -6,7 +6,7 @@ import {colors} from '../assets/constants';
 const TrainButton = () => {
   return (
     <TouchableOpacity style={styles.container}>
-      <Text style={styles.label}>Go</Text>
+      <Text style={styles.label}>GO</Text>
     </TouchableOpacity>
   );
 };
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.purple,
   },
   label: {
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 16,
+    fontFamily: 'Rubik-Medium',
     color: 'white',
   },
 });
