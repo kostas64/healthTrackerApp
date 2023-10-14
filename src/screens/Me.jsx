@@ -6,7 +6,7 @@ import Header from '../components/Header';
 const Me = () => {
   return (
     <View style={styles.container}>
-      <Header title={'Me'} />
+      <Header title={'Me'} subtitle={'Profile'} />
     </View>
   );
 };

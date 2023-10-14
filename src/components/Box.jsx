@@ -5,9 +5,9 @@ import {StackedBarChart} from 'react-native-svg-charts';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import {Gradient} from './Gradient';
-import {L_SPACE, WIDTH, XL_SPACE, colors} from '../assets/constants';
-import {bpm, water, waterClrs, waterKeys} from '../assets/data';
 import ProgressBox from './ProgressBox';
+import {bpm, water, waterClrs, waterKeys} from '../assets/data';
+import {L_SPACE, WIDTH, XL_SPACE, colors} from '../assets/constants';
 
 const Box = ({
   isDark = false,
@@ -19,6 +19,7 @@ const Box = ({
   bottomSubtitle,
   icon,
   tintColor,
+  progress,
 }) => {
   const bgColor = isDark ? colors.purple : 'white';
   const textColor = {color: isDark ? 'white' : 'black'};
@@ -66,7 +67,7 @@ const Box = ({
 
       {isDark && (
         <View style={{marginVertical: XL_SPACE}}>
-          <ProgressBox />
+          <ProgressBox progress={progress} />
         </View>
       )}
 

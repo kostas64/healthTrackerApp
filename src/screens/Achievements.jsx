@@ -6,7 +6,7 @@ import Header from '../components/Header';
 const Achievements = () => {
   return (
     <View style={styles.container}>
-      <Header title={'Your achievements'} />
+      <Header title={'Your achievements'} subtitle={'Check your badges'} />
     </View>
   );
 };

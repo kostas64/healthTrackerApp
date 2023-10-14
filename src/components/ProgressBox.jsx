@@ -4,18 +4,20 @@ import {ProgressCircle} from 'react-native-svg-charts';
 
 import {colors} from '../assets/constants';
 
-const ProgressBox = () => {
+const ProgressBox = ({progress}) => {
   return (
     <>
       <ProgressCircle
         style={styles.chartHeight}
-        progress={0.5}
+        progress={progress}
         backgroundColor={colors.lightPurple}
         progressColor={'white'}
         startAngle={0}
         strokeWidth={10}
       />
-      <Text style={styles.percentageLabel}>{`50%`}</Text>
+      <Text style={styles.percentageLabel}>{`${Math.floor(
+        progress * 100,
+      )}%`}</Text>
     </>
   );
 };

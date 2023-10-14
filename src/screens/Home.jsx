@@ -3,13 +3,19 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 
 import Box from '../components/Box';
 import {images} from '../assets/images';
+import {getDates} from '../utils/Dates';
 import Header from '../components/Header';
 import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 
+const GOAL = 15000;
+
 const Home = () => {
+  const steps = getDates()?.[7]?.steps?.replace(',', '');
+  const progress = Number(parseInt(steps)) / GOAL;
+
   return (
     <View style={styles.outContainer}>
-      <Header title={'For today'} subtitle={'Good morning, John!'} />
+      <Header title={'For today'} subtitle={'Welcome John!'} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingBottom: 24}}
@@ -18,7 +24,8 @@ const Home = () => {
           <Box
             isDark
             title={'Walk'}
-            bottomTitle={`7500/15000`}
+            progress={progress > 1 ? 1 : progress}
+            bottomTitle={`${steps}/15000`}
             bottomSubtitle={'steps'}
             icon={images.shoe}
             tintColor={colors.lightGrey}
