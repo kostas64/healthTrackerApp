@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {colors} from '../assets/constants';
 import LineChartItem from './LineChartItem';
 
-const ListChartSquadItem = ({data, onPress, index}) => {
+const ListChartSquadItem = ({data, onPress, selectedDate, index}) => {
   const hour = index === 0 ? `08:00` : index === 1 ? `16:00` : '23:59';
 
   const getIndex = nestedI => {
@@ -36,6 +36,7 @@ const ListChartSquadItem = ({data, onPress, index}) => {
             onPress={onPress}
             distance={item?.distance}
             calories={item?.calories}
+            selectedDate={selectedDate}
           />
         ))}
       </View>

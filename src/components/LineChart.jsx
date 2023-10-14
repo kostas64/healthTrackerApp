@@ -22,18 +22,21 @@ const LineChart = ({data, selectedDate}) => {
         <LineChartTooltip tooltip={tooltip} />
       </View>
       <ListChartSquadItem
-        data={data?.morning}
         index={0}
+        data={data?.morning}
+        selectedDate={selectedDate}
         onPress={value => setTooltip(value)}
       />
       <ListChartSquadItem
-        data={data?.noon}
         index={1}
+        data={data?.noon}
+        selectedDate={selectedDate}
         onPress={value => setTooltip(value)}
       />
       <ListChartSquadItem
-        data={data?.afternoon}
         index={2}
+        data={data?.afternoon}
+        selectedDate={selectedDate}
         onPress={value => setTooltip(value)}
       />
     </View>

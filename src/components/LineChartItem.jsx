@@ -1,9 +1,16 @@
-import React from 'react';
+import Animated, {
+  withSpring,
+  useSharedValue,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
+import React, {useEffect} from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {WIDTH, colors} from '../assets/constants';
 
-const LineChartItem = ({distance, calories, onPress, index}) => {
+const AnimTouch = Animated.createAnimatedComponent(TouchableOpacity);
+
+const LineChartItem = ({distance, calories, onPress, selectedDate, index}) => {
   const parsedDis = Number(parseInt(distance?.replace(',', ''))) / 100;
   const parsedCal = Number(parseInt(calories?.replace(',', ''))) / 100;
 
@@ -18,9 +25,33 @@ const LineChartItem = ({distance, calories, onPress, index}) => {
   const caloriesText = calories > 0 ? `Calories: ${calories}` : 'No activity';
   const distanceText = distance > 0 ? `Distance: ${distance}m` : 'No activity';
 
+  const calSharedVal = useSharedValue(0);
+  const disSharedVal = useSharedValue(0);
+
+  const calAnimStyle = useAnimatedStyle(() => {
+    const height = calSharedVal.value;
+
+    return {
+      height,
+    };
+  });
+
+  const disAnimStyle = useAnimatedStyle(() => {
+    const height = disSharedVal.value;
+
+    return {
+      height,
+    };
+  });
+
+  useEffect(() => {
+    calSharedVal.value = withSpring(caloriesHeight);
+    disSharedVal.value = withSpring(distanceHeight);
+  }, [selectedDate]);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity
+      <AnimTouch
         hitSlop={styles.hitSlop}
         onPress={e =>
           onPress({
@@ -29,13 +60,10 @@ const LineChartItem = ({distance, calories, onPress, index}) => {
             layout: e.nativeEvent,
           })
         }
-        style={[
-          styles.orangeLine,
-          {backgroundColor: orangeLine, height: caloriesHeight},
-        ]}
+        style={[styles.orangeLine, calAnimStyle, {backgroundColor: orangeLine}]}
       />
       <View style={styles.spacer} />
-      <TouchableOpacity
+      <AnimTouch
         hitSlop={styles.hitSlop}
         onPress={e =>
           onPress({
@@ -44,10 +72,7 @@ const LineChartItem = ({distance, calories, onPress, index}) => {
             layout: e.nativeEvent,
           })
         }
-        style={[
-          styles.purpleLine,
-          {backgroundColor: purpleLine, height: distanceHeight},
-        ]}
+        style={[styles.purpleLine, disAnimStyle, {backgroundColor: purpleLine}]}
       />
     </View>
   );
