@@ -4,6 +4,8 @@ const flame = require('./images/flame.png');
 const sleep = require('./images/sleep.png');
 const heart = require('./images/heart.png');
 const me = require('./images/me.jpg');
+const target = require('./images/target.png');
+
 const Stats = require('./images/bar.png');
 const Me = require('./images/user.png');
 const Achievements = require('./images/medal.png');
@@ -20,4 +22,5 @@ export const images = {
   drop,
   shoe,
   flame,
+  target,
 };
