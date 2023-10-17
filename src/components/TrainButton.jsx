@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import {colors} from '../assets/constants';
+import {DimUtils} from '../utils/DimensionUtils';
 
 const TrainButton = () => {
   return (
@@ -14,10 +15,10 @@ const TrainButton = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: -20,
-    width: 52,
-    height: 52,
-    borderRadius: 26,
+    top: -DimUtils.getDP(20),
+    width: DimUtils.getDP(52),
+    height: DimUtils.getDP(52),
+    borderRadius: DimUtils.getDP(26),
     elevation: 5,
     shadowColor: 'black',
     shadowOpacity: 0.25,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.purple,
   },
   label: {
-    fontSize: 16,
+    fontSize: DimUtils.getFontSize(16),
     fontFamily: 'Rubik-Medium',
     color: 'white',
   },

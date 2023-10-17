@@ -8,6 +8,7 @@ import Home from '../screens/Home';
 import Stats from '../screens/Stats';
 import Train from '../screens/Train';
 import {images} from '../assets/images';
+import {DimUtils} from '../utils/DimensionUtils';
 import Achievements from '../screens/Achievements';
 import TrainButton from '../components/TrainButton';
 import {L_SPACE, M_SPACE, colors} from '../assets/constants';
@@ -109,8 +110,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2 * L_SPACE,
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: DimUtils.getDP(24),
+    height: DimUtils.getDP(24),
     tintColor: colors.purple,
   },
 });

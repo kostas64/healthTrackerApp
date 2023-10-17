@@ -6,6 +6,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import {Gradient} from './Gradient';
 import ProgressBox from './ProgressBox';
+import {DimUtils} from '../utils/DimensionUtils';
 import {bpm, water, waterClrs, waterKeys} from '../assets/data';
 import {L_SPACE, WIDTH, XL_SPACE, colors} from '../assets/constants';
 
@@ -89,20 +90,21 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     width: (WIDTH - 48 - 16) / 2,
-    padding: 2 * L_SPACE,
+    padding: DimUtils.getDP(2 * L_SPACE),
     borderRadius: 2 * XL_SPACE,
     overflow: 'hidden',
   },
   title: {
-    fontSize: 16,
+    fontSize: DimUtils.getFontSize(16),
     fontFamily: 'Rubik-Medium',
   },
   footerSubtitle: {
+    fontSize: DimUtils.getFontSize(14),
     fontFamily: 'Rubik-Regular',
     color: colors.lightGrey,
   },
   percentageLabel: {
-    fontSize: 18,
+    fontSize: DimUtils.getFontSize(18),
     fontWeight: '700',
     textAlign: 'center',
     position: 'absolute',
@@ -111,8 +113,8 @@ const styles = StyleSheet.create({
     top: 42,
   },
   icon: {
-    width: 22,
-    height: 22,
+    width: DimUtils.getDP(22),
+    height: DimUtils.getDP(22),
   },
   lineChart: {
     height: 106,
