@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 import {colors} from '../assets/constants';
+import {DimUtils} from '../utils/DimensionUtils';
 
 const BoxStats = ({label, value, dotColor, unit}) => {
   return (
@@ -25,24 +26,24 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
   },
   title: {
-    fontSize: 18,
+    fontSize: DimUtils.getFontSize(20),
     fontFamily: 'Rubik-Medium',
     color: colors.lightGrey,
   },
   value: {
     color: colors.black,
-    fontSize: 30,
+    fontSize: DimUtils.getFontSize(30),
     fontFamily: 'Rubik-Regular',
   },
   unit: {
-    fontSize: 22,
+    fontSize: DimUtils.getFontSize(22),
     color: colors.lightGrey,
   },
   dot: {
-    width: 16,
-    height: 16,
-    marginLeft: 8,
-    borderRadius: 8,
+    width: DimUtils.getDP(16),
+    height: DimUtils.getDP(16),
+    marginLeft: DimUtils.getDP(8),
+    borderRadius: DimUtils.getDP(8),
   },
 });
 

@@ -19,13 +19,8 @@ const CalendarList = ({scrollY, selectedDate, setSelectedDate}) => {
     return {
       backgroundColor: interpolateColor(
         scrollY.value,
-        [0, 20, 50, 80],
-        [
-          'rgb(255,255,255)',
-          'rgb(255,255,255)',
-          'rgb(255,255,255)',
-          'rgb(82,67,172)',
-        ],
+        [0, 30, 60],
+        ['rgb(255,255,255)', 'rgb(255,255,255)', 'rgb(82,67,172)'],
       ),
     };
   });
@@ -34,7 +29,7 @@ const CalendarList = ({scrollY, selectedDate, setSelectedDate}) => {
     return {
       color: interpolateColor(
         scrollY.value,
-        [0, 60, 80],
+        [0, 30, 60],
         ['rgb(0,0,0)', 'rgb(0,0,0)', 'rgb(255,255,255)'],
       ),
     };

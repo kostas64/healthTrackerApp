@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useIsFocused} from '@react-navigation/native';
 
 import {WIDTH} from '../assets/constants';
+import {DimUtils} from '../utils/DimensionUtils';
 import LineChartTooltip from './LineChartTooltip';
 import ListChartSquadItem from './ListChartSquadItem';
 
@@ -45,14 +46,14 @@ const LineChart = ({data, selectedDate}) => {
 
 const styles = StyleSheet.create({
   chartContainer: {
-    marginTop: 16,
-    marginBottom: 32,
-    marginHorizontal: 16,
+    marginTop: DimUtils.getDP(24),
+    marginBottom: DimUtils.getDP(32),
+    marginHorizontal: DimUtils.getDP(16),
     flexDirection: 'row',
   },
   tooltipContainer: {
     position: 'absolute',
-    top: -30,
+    top: -24,
     width: WIDTH - 40,
     alignItems: 'center',
   },

@@ -3,8 +3,8 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 
-import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 
 import {getDates} from '../utils/Dates';
 import Header from '../components/Header';
@@ -16,6 +16,7 @@ import CalendarList from '../components/CalendarList';
 
 const Stats = () => {
   const data = getDates();
+  const scrollRef = useRef();
 
   const scrollY = useSharedValue(0);
   const [selectedDate, setSelectedDate] = useState(data?.[7]);
@@ -23,6 +24,10 @@ const Stats = () => {
   const scrollHandler = useAnimatedScrollHandler(e => {
     scrollY.value = e.contentOffset.y;
   });
+
+  useEffect(() => {
+    scrollRef.current.scrollTo({y: 0, animated: true});
+  }, [selectedDate]);
 
   return (
     <View style={styles.container}>
@@ -36,6 +41,7 @@ const Stats = () => {
       />
 
       <Animated.ScrollView
+        ref={scrollRef}
         bounces={false}
         style={styles.container}
         onScroll={scrollHandler}

@@ -43,18 +43,13 @@ const Header = ({title, subtitle, scrollY}) => {
       paddingTop: interpolate(
         scrollY.value,
         [0, 80, 100],
-        [paddingTop, paddingTop, insets.top - M_SPACE],
+        [paddingTop, paddingTop, insets.top > 0 ? insets.top - 8 : 28],
         Extrapolate.CLAMP,
       ),
       backgroundColor: interpolateColor(
         scrollY.value,
-        [0, 20, 50, 80],
-        [
-          'rgb(255,255,255)',
-          'rgb(255,255,255)',
-          'rgb(255,255,255)',
-          'rgb(82,67,172)',
-        ],
+        [0, 30, 60],
+        ['rgb(255,255,255)', 'rgb(255,255,255)', 'rgb(82,67,172)'],
       ),
     };
   });
@@ -75,36 +70,26 @@ const Header = ({title, subtitle, scrollY}) => {
     return {
       borderRadius: interpolate(
         scrollY.value,
-        [0, 20, 50, 80],
-        [26, 21, 21, 0],
+        [0, 80],
+        [26, 0],
         Extrapolate.CLAMP,
       ),
-      height: interpolate(
-        scrollY.value,
-        isIOS ? [0, 20, 50, 80] : [0, 20],
-        isIOS ? [52, 42, 42, 0] : [52, 0],
-        Extrapolate.CLAMP,
-      ),
-      width: interpolate(
-        scrollY.value,
-        isIOS ? [0, 20, 50, 80] : [0, 20],
-        isIOS ? [52, 42, 42, 0] : [52, 0],
-        Extrapolate.CLAMP,
-      ),
+      height: interpolate(scrollY.value, [0, 80], [52, 0], Extrapolate.CLAMP),
+      width: interpolate(scrollY.value, [0, 80], [52, 0], Extrapolate.CLAMP),
       transform: [
         {
           translateX: interpolate(
             scrollY.value,
-            isIOS ? [0, 20, 50, 80] : [0, 20],
-            isIOS ? [0, -4, -4, -20] : [0, -20],
+            [0, 80],
+            [0, -20],
             Extrapolate.CLAMP,
           ),
         },
         {
           translateY: interpolate(
             scrollY.value,
-            isIOS ? [0, 20, 50, 80] : [0, 20],
-            isIOS ? [0, 2, 2, 12] : [0, 12],
+            [0, 80],
+            [0, 12],
             Extrapolate.CLAMP,
           ),
         },
