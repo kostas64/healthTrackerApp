@@ -2,12 +2,14 @@ import {useEffect, useRef} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Animated, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Me from '../screens/Me';
 import Home from '../screens/Home';
 import Stats from '../screens/Stats';
 import Train from '../screens/Train';
 import {images} from '../assets/images';
+import SetGoal from '../screens/SetGoal';
 import {DimUtils} from '../utils/DimensionUtils';
 import Achievements from '../screens/Achievements';
 import TrainButton from '../components/TrainButton';
@@ -95,6 +97,20 @@ const BottomStack = () => {
       <Tab.Screen name="Stats" component={Stats} />
       <Tab.Screen name="Me" component={Me} />
     </Tab.Navigator>
+  );
+};
+
+const Stack = createNativeStackNavigator();
+
+export const Navigation = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Main" component={BottomStack} />
+      <Stack.Screen name="SetGoal" component={SetGoal} />
+    </Stack.Navigator>
   );
 };
 

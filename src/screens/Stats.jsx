@@ -6,6 +6,7 @@ import Animated, {
 import {View, StyleSheet} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 
+import Goal from '../components/Goal';
 import {getDates} from '../utils/Dates';
 import Header from '../components/Header';
 import {colors} from '../assets/constants';
@@ -70,11 +71,8 @@ const Stats = () => {
           selectedDate={selectedDate?.date}
         />
 
-        {/* Chart */}
-        <LineChart
-          data={selectedDate?.chart}
-          selectedDate={selectedDate?.date}
-        />
+        {/* Goal */}
+        <Goal />
       </Animated.ScrollView>
     </View>
   );
