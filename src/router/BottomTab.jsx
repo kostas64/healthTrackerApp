@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2 * L_SPACE,
   },
   icon: {
+    top: DimUtils.getDP(4),
     width: DimUtils.getDP(24),
     height: DimUtils.getDP(24),
     tintColor: colors.purple,

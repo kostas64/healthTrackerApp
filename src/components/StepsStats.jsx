@@ -1,17 +1,24 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {images} from '../assets/images';
 import {colors} from '../assets/constants';
+import {Context} from '../context/Context';
+import {DimUtils} from '../utils/DimensionUtils';
 
 const StepsStats = ({numOfSteps}) => {
+  const {goalSteps} = useContext(Context);
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Steps</Text>
         <Image source={images.shoe} style={styles.icon} />
       </View>
-      <Text style={styles.steps}>{numOfSteps}</Text>
+      <Text>
+        <Text style={styles.steps}>{numOfSteps}</Text>
+        <Text style={styles.steps2}>{`/${goalSteps}`}</Text>
+      </Text>
     </View>
   );
 };
@@ -31,8 +38,13 @@ const styles = StyleSheet.create({
     color: colors.lightGrey,
   },
   steps: {
-    fontSize: 90,
+    fontSize: DimUtils.getFontSize(72),
     fontFamily: 'Rubik-Light',
+    color: colors.black,
+  },
+  steps2: {
+    fontSize: DimUtils.getFontSize(20),
+    fontFamily: 'Rubik-Regular',
     color: colors.black,
   },
   icon: {
