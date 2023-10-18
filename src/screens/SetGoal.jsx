@@ -1,21 +1,18 @@
-import React, {useState} from 'react';
-import {runOnJS, useSharedValue} from 'react-native-reanimated';
+import React, {useContext, useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
+import Button from '../components/Button';
+import {Context} from '../context/Context';
+import Counter from '../components/Counter';
 import {DimUtils} from '../utils/DimensionUtils';
-import {L_SPACE, M_SPACE, colors} from '../assets/constants';
+import {L_SPACE, M_SPACE} from '../assets/constants';
 
-const SetGoal = () => {
+const SetGoal = ({navigation}) => {
   const insets = useSafeAreaInsets();
-  const intervalShared = useSharedValue();
-  const [number, setNumber] = useState(100);
-  const [buttonPressed, setButtonPressed] = useState(false);
-  const [button2Pressed, setButton2Pressed] = useState(false);
+  const {goalSteps, setGoalSteps} = useContext(Context);
 
-  const isAddDisabled = number === 100000;
-  const isSubDisabled = number < 60;
+  const [number, setNumber] = useState(goalSteps);
 
   const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
   const paddingBottom =
@@ -28,47 +25,6 @@ const SetGoal = () => {
     setNumber(old => (action === 'add' ? old + 10 : old - 10));
   };
 
-  let interval = action =>
-    (intervalShared.value = setInterval(() => {
-      if (action === 'add')
-        setNumber(old => {
-          if (old < 100000) {
-            return old + 20;
-          } else {
-            return old;
-          }
-        });
-      else if (!isSubDisabled) {
-        setNumber(old => {
-          if (old >= 60) {
-            return old - 20 === 40 ? 50 : old - 20;
-          } else {
-            return old;
-          }
-        });
-      }
-    }, 250));
-
-  const longPressMinGesture = Gesture.LongPress()
-    .onBegin(() => {
-      runOnJS(setButtonPressed)(true);
-      runOnJS(interval)('sub');
-    })
-    .onFinalize(() => {
-      runOnJS(setButtonPressed)(false);
-      runOnJS(clearInterval)(intervalShared.value);
-    });
-
-  const longPressAddGesture = Gesture.LongPress()
-    .onBegin(() => {
-      runOnJS(setButton2Pressed)(true);
-      runOnJS(interval)('add');
-    })
-    .onFinalize(() => {
-      runOnJS(setButton2Pressed)(false);
-      runOnJS(clearInterval)(intervalShared.value);
-    });
-
   return (
     <View style={[styles.container, {paddingTop, paddingBottom}]}>
       {/* Title & Subtitle */}
@@ -78,42 +34,20 @@ const SetGoal = () => {
       </View>
 
       {/* Counter */}
-      <View>
-        <View style={styles.counterContainer}>
-          <GestureDetector gesture={longPressMinGesture}>
-            <TouchableOpacity
-              disabled={isSubDisabled}
-              onPress={() => changeNumber('sub')}
-              style={[
-                styles.circle,
-                (isSubDisabled || buttonPressed) && styles.lowOpacity,
-              ]}>
-              <View style={styles.minus} />
-            </TouchableOpacity>
-          </GestureDetector>
-          <View>
-            <Text style={styles.number}>{number}</Text>
-          </View>
-          <GestureDetector gesture={longPressAddGesture}>
-            <TouchableOpacity
-              disabled={isAddDisabled}
-              onPress={() => changeNumber('add')}
-              style={[
-                styles.circle,
-                (isAddDisabled || button2Pressed) && styles.lowOpacity,
-              ]}>
-              <View style={styles.minus} />
-              <View style={[styles.minus, styles.plus]} />
-            </TouchableOpacity>
-          </GestureDetector>
-        </View>
-        <Text style={styles.stepsPerDayLabel}>STEPS/DAY</Text>
-      </View>
+      <Counter
+        number={number}
+        setNumber={setNumber}
+        changeNumber={changeNumber}
+      />
 
       {/* Button */}
-      <TouchableOpacity style={styles.buttonContainer}>
-        <Text style={styles.buttonLabel}>Change move goal</Text>
-      </TouchableOpacity>
+      <Button
+        label={'Change move goal'}
+        onPress={() => {
+          setGoalSteps(number);
+          navigation.pop();
+        }}
+      />
     </View>
   );
 };
@@ -136,54 +70,6 @@ const styles = StyleSheet.create({
     fontSize: DimUtils.getFontSize(16),
     fontFamily: 'Rubik-Regular',
     textAlign: 'center',
-  },
-  counterContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  circle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.purple,
-    height: DimUtils.getDP(48),
-    width: DimUtils.getDP(48),
-    borderRadius: DimUtils.getDP(24),
-  },
-  minus: {
-    backgroundColor: 'white',
-    height: DimUtils.getDP(16),
-    width: DimUtils.getDP(3),
-    transform: [{rotate: '90deg'}],
-  },
-  plus: {
-    position: 'absolute',
-    transform: [{rotate: '0deg'}],
-  },
-  number: {
-    color: 'black',
-    fontFamily: 'Rubik-SemiBold',
-    fontSize: DimUtils.getFontSize(56),
-  },
-  stepsPerDayLabel: {
-    alignSelf: 'center',
-    color: 'black',
-    fontSize: DimUtils.getFontSize(24),
-    fontFamily: 'Rubik-SemiBold',
-  },
-  buttonContainer: {
-    backgroundColor: colors.purple,
-    paddingVertical: DimUtils.getDP(16),
-    borderRadius: DimUtils.getDP(12),
-  },
-  buttonLabel: {
-    alignSelf: 'center',
-    fontSize: DimUtils.getDP(16),
-    fontFamily: 'Rubik-Medium',
-    color: 'white',
-  },
-  lowOpacity: {
-    opacity: 0.3,
   },
 });
 

@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import {images} from '../assets/images';
+import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
 import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 
 const Goal = () => {
   const navigation = useNavigation();
+  const {goalSteps} = useContext(Context);
 
   return (
     <View style={styles.container}>
@@ -15,7 +17,7 @@ const Goal = () => {
         <Text style={styles.title}>Current Goal</Text>
         <Image source={images.target} style={styles.icon} />
       </View>
-      <Text style={styles.stepsLabel}>15000 steps</Text>
+      <Text style={styles.stepsLabel}>{`${goalSteps} steps`}</Text>
       <TouchableOpacity
         onPress={() => navigation.navigate('SetGoal')}
         style={styles.buttonContainer}>

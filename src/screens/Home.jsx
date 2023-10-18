@@ -1,17 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 
 import Box from '../components/Box';
 import {images} from '../assets/images';
 import {getDates} from '../utils/Dates';
 import Header from '../components/Header';
+import {Context} from '../context/Context';
 import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 
-const GOAL = 15000;
-
 const Home = () => {
+  const {goalSteps} = useContext(Context);
+
   const steps = getDates()?.[7]?.steps?.replace(',', '');
-  const progress = Number(parseInt(steps)) / GOAL;
+  const progress = Number(parseInt(steps)) / goalSteps;
 
   return (
     <View style={styles.outContainer}>
@@ -25,10 +26,10 @@ const Home = () => {
             isDark
             title={'Walk'}
             progress={progress > 1 ? 1 : progress}
-            bottomTitle={`${steps}/15000`}
+            bottomTitle={`${steps}/${goalSteps}`}
             bottomSubtitle={'steps'}
             icon={images.shoe}
-            tintColor={colors.lightGrey}
+            tintColor={colors.veryLightPurple}
           />
           <Box
             hasStackBar
