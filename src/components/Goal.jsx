@@ -1,11 +1,13 @@
 import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 
+import Button from './Button';
+import Walking from './Walking';
 import {images} from '../assets/images';
 import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
-import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
+import {XL_SPACE, colors} from '../assets/constants';
 
 const Goal = () => {
   const navigation = useNavigation();
@@ -13,16 +15,24 @@ const Goal = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.rowCenter}>
-        <Text style={styles.title}>Current Goal</Text>
-        <Image source={images.target} style={styles.icon} />
+      <View style={[styles.rowCenter]}>
+        <View>
+          <View style={styles.rowCenter}>
+            <Text style={styles.title}>Current Goal</Text>
+            <Image source={images.target} style={styles.icon} />
+          </View>
+          <Text style={styles.stepsLabel}>{`${goalSteps} steps`}</Text>
+        </View>
+        {/* Animation */}
+        <Walking />
       </View>
-      <Text style={styles.stepsLabel}>{`${goalSteps} steps`}</Text>
-      <TouchableOpacity
+
+      <Button
+        label={'Set new goal'}
         onPress={() => navigation.navigate('SetGoal')}
-        style={styles.buttonContainer}>
-        <Text style={styles.buttonLabel}>Set new goal</Text>
-      </TouchableOpacity>
+        buttonLabelStyle={styles.buttonLabel}
+        buttonContainerStyle={styles.buttonContainer}
+      />
     </View>
   );
 };
@@ -34,10 +44,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 16,
-    marginHorizontal: 24,
-    marginTop: 8,
-    marginBottom: 36,
+    padding: DimUtils.getDP(16),
+    marginHorizontal: DimUtils.getDP(24),
+    marginTop: DimUtils.getDP(8),
+    marginBottom: DimUtils.getDP(36),
     borderRadius: XL_SPACE,
     backgroundColor: colors.purple,
   },
@@ -55,20 +65,15 @@ const styles = StyleSheet.create({
   stepsLabel: {
     color: 'white',
     fontFamily: 'Rubik-Medium',
-    marginTop: 8,
+    marginTop: DimUtils.getDP(8),
     fontSize: DimUtils.getFontSize(24),
   },
   buttonContainer: {
-    marginTop: 16,
-    padding: 8,
     backgroundColor: 'white',
-    borderRadius: L_SPACE,
+    marginTop: DimUtils.getDP(16),
   },
   buttonLabel: {
-    alignSelf: 'center',
-    fontFamily: 'Rubik-Medium',
     color: colors.purple,
-    fontSize: DimUtils.getFontSize(16),
   },
 });
 

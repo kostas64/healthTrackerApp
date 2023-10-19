@@ -4,10 +4,12 @@ import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {colors} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
 
-const Button = ({label, onPress}) => {
+const Button = ({label, onPress, buttonContainerStyle, buttonLabelStyle}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
-      <Text style={styles.buttonLabel}>{label}</Text>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.buttonContainer, buttonContainerStyle]}>
+      <Text style={[styles.buttonLabel, buttonLabelStyle]}>{label}</Text>
     </TouchableOpacity>
   );
 };
