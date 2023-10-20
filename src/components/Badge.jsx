@@ -69,7 +69,7 @@ const Badge = ({item}) => {
   };
 
   useEffect(() => {
-    onItemPress();
+    item?.complete && onItemPress();
   }, []);
 
   return (
