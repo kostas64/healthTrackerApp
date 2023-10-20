@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 
 import {images} from '../assets/images';
@@ -9,9 +10,11 @@ import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 const data = [
   {
     title: 'Health details',
+    screen: 'HealthDetails',
   },
   {
     title: 'Change move detais',
+    screen: 'SetGoal',
   },
 ];
 
@@ -28,12 +31,20 @@ const Item = ({title, subtitle}) => {
 };
 
 const Table = ({array}) => {
+  const navigation = useNavigation();
+
+  const onPress = item => {
+    !!item.screen && navigation.navigate(item.screen);
+  };
+
   return (
     <View style={styles.tableContainer}>
       {array.map((item, key) => (
         <View key={key}>
           {key !== 0 && <View style={styles.hr} />}
-          <TouchableOpacity style={styles.tableItemContainer}>
+          <TouchableOpacity
+            onPress={() => onPress(item)}
+            style={styles.tableItemContainer}>
             <Text key={key} style={styles.tableItemTitle}>
               {item.title}
             </Text>
@@ -60,7 +71,7 @@ const Me = () => {
       <Table array={data} />
 
       <View style={{marginTop: 2 * L_SPACE}} />
-      <Item title={'Notification'} />
+      <Item title={'Notifications'} />
     </View>
   );
 };
