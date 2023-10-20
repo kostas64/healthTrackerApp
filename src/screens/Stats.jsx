@@ -3,15 +3,18 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 
+import moment from 'moment';
 import {View, StyleSheet} from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import Goal from '../components/Goal';
 import {getDates} from '../utils/Dates';
 import Header from '../components/Header';
+import NoData from '../components/NoData';
 import {colors} from '../assets/constants';
 import BoxStats from '../components/BoxStats';
 import LineChart from '../components/LineChart';
+import {DimUtils} from '../utils/DimensionUtils';
 import StepsStats from '../components/StepsStats';
 import CalendarList from '../components/CalendarList';
 
@@ -22,13 +25,14 @@ const Stats = () => {
   const scrollY = useSharedValue(0);
   const [selectedDate, setSelectedDate] = useState(data?.[7]);
 
+  const isNotInFuture = moment(selectedDate.date)
+    .set({hour: 0, minute: 0, second: 0, millisecond: 0})
+    .add(0, 'd')
+    .isSameOrBefore(moment());
+
   const scrollHandler = useAnimatedScrollHandler(e => {
     scrollY.value = e.contentOffset.y;
   });
-
-  useEffect(() => {
-    scrollRef.current.scrollTo({y: 0, animated: true});
-  }, [selectedDate]);
 
   return (
     <View style={styles.container}>
@@ -38,7 +42,10 @@ const Stats = () => {
       <CalendarList
         scrollY={scrollY}
         selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
+        setSelectedDate={value => {
+          setSelectedDate(value);
+          scrollRef.current?.scrollTo({y: 0, animated: true});
+        }}
       />
 
       <Animated.ScrollView
@@ -47,32 +54,31 @@ const Stats = () => {
         style={styles.container}
         onScroll={scrollHandler}
         showsVerticalScrollIndicator={false}>
-        {/* Steps */}
-        <StepsStats numOfSteps={selectedDate?.steps} />
-
-        {/* Distance & Calories */}
-        <View style={styles.boxContainer}>
-          <BoxStats
-            unit={'m'}
-            value={selectedDate?.distance}
-            label={'Distance'}
-            dotColor={colors.purple}
-          />
-          <BoxStats
-            label={'Calories'}
-            value={selectedDate?.calories}
-            dotColor={colors.orange}
-          />
-        </View>
-
-        {/* Chart */}
-        <LineChart
-          data={selectedDate?.chart}
-          selectedDate={selectedDate?.date}
-        />
-
-        {/* Goal */}
-        <Goal />
+        {isNotInFuture ? (
+          <>
+            <StepsStats numOfSteps={selectedDate?.steps} />
+            <View style={styles.boxContainer}>
+              <BoxStats
+                unit={'m'}
+                value={selectedDate?.distance}
+                label={'Distance'}
+                dotColor={colors.purple}
+              />
+              <BoxStats
+                label={'Calories'}
+                value={selectedDate?.calories}
+                dotColor={colors.orange}
+              />
+            </View>
+            <LineChart
+              data={selectedDate?.chart}
+              selectedDate={selectedDate?.date}
+            />
+            <Goal />
+          </>
+        ) : (
+          <NoData />
+        )}
       </Animated.ScrollView>
     </View>
   );
@@ -84,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   boxContainer: {
-    marginVertical: 24,
+    marginVertical: DimUtils.getDP(24),
     flexDirection: 'row',
   },
 });

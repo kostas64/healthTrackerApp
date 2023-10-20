@@ -5,6 +5,16 @@ const sleep = require('./images/sleep.png');
 const heart = require('./images/heart.png');
 const me = require('./images/me.jpg');
 const target = require('./images/target.png');
+const calendar = require('./images/calendar.png');
+
+const badgeBlue1 = require('./images/badge_bl_1.png');
+const badgeBlue2 = require('./images/badge_bl_2.png');
+const badgeGreen1 = require('./images/badge_gr_1.png');
+const badgeGreen2 = require('./images/badge_gr_2.png');
+const badgeOrange1 = require('./images/badge_or_1.png');
+const badgeOrange2 = require('./images/badge_or_2.png');
+const badgePurple1 = require('./images/badge_pur_1.png');
+const badgePurple2 = require('./images/badge_pur_2.png');
 
 const Stats = require('./images/bar.png');
 const Me = require('./images/user.png');
@@ -23,4 +33,13 @@ export const images = {
   shoe,
   flame,
   target,
+  calendar,
+  badgeBlue1,
+  badgeBlue2,
+  badgeGreen1,
+  badgeGreen2,
+  badgeOrange1,
+  badgeOrange2,
+  badgePurple1,
+  badgePurple2,
 };
