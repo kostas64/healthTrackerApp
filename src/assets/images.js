@@ -1,3 +1,4 @@
+const arrow = require('./images/arrow.png');
 const drop = require('./images/drop.png');
 const shoe = require('./images/shoe.png');
 const flame = require('./images/flame.png');
@@ -26,6 +27,7 @@ export const images = {
   Me,
   Achievements,
   Home,
+  arrow,
   me,
   heart,
   sleep,
