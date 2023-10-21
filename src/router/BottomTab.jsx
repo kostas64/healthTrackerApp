@@ -11,6 +11,7 @@ import Train from '../screens/Train';
 import {images} from '../assets/images';
 import SetGoal from '../screens/SetGoal';
 import {DimUtils} from '../utils/DimensionUtils';
+import EditAccount from '../screens/EditAccount';
 import Achievements from '../screens/Achievements';
 import TrainButton from '../components/TrainButton';
 import HealthDetails from '../screens/HealthDetails';
@@ -105,15 +106,28 @@ const BottomStack = () => {
 const Stack = createNativeStackNavigator();
 
 export const Navigation = () => {
+  const options = {
+    animation: 'slide_from_right',
+  };
+
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
       <Stack.Screen name="Main" component={BottomStack} />
-      <Stack.Screen name="SetGoal" component={SetGoal} />
-      <Stack.Screen name="HealthDetails" component={HealthDetails} />
-      <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="Account" component={EditAccount} options={options} />
+      <Stack.Screen name="SetGoal" component={SetGoal} options={options} />
+      <Stack.Screen
+        name="HealthDetails"
+        component={HealthDetails}
+        options={options}
+      />
+      <Stack.Screen
+        name="Notifications"
+        component={Notifications}
+        options={options}
+      />
     </Stack.Navigator>
   );
 };

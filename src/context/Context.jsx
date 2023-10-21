@@ -7,6 +7,7 @@ const ContextProvider = ({children}) => {
   const [user, setUser] = useState({
     name: 'Konstantinos',
     surname: 'Efkarpidis',
+    email: 'kostas11062@gmail.com',
     birth: '1997-08-06',
     gender: 'Male',
     height: '181 cm',

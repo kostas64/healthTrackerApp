@@ -9,14 +9,14 @@ import {Context} from '../context/Context';
 import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 
 const Home = () => {
-  const {goalSteps} = useContext(Context);
+  const {user, goalSteps} = useContext(Context);
 
   const steps = getDates()?.[7]?.steps?.replace(',', '');
   const progress = Number(parseInt(steps)) / goalSteps;
 
   return (
     <View style={styles.outContainer}>
-      <Header title={'For today'} subtitle={'Welcome John!'} />
+      <Header title={'For today'} subtitle={`Welcome ${user?.name}!`} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingBottom: 24}}

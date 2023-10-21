@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: DimUtils.getDP(16),
     borderRadius: DimUtils.getDP(8),
-
     backgroundColor: colors.lightestPurple,
   },
   itemTitle: {

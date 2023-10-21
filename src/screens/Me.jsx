@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 
 import {images} from '../assets/images';
 import Header from '../components/Header';
+import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
 import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 
@@ -61,14 +62,17 @@ const Table = ({array}) => {
 };
 
 const Me = () => {
+  const {user} = useContext(Context);
+
   return (
     <View style={styles.container}>
       <Header title={'Me'} subtitle={'Profile'} />
 
       <View style={{marginTop: XL_SPACE}} />
       <Item
-        title={'Konstantinos Efkarpidis'}
-        subtitle={'kostas11062@gmail.com'}
+        title={`${user.name} ${user.surname}`}
+        subtitle={user.email}
+        screen={'Account'}
       />
 
       <View style={{marginTop: 2 * L_SPACE}} />
