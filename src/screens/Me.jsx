@@ -18,9 +18,13 @@ const data = [
   },
 ];
 
-const Item = ({title, subtitle}) => {
+const Item = ({title, subtitle, screen}) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.itemContainer}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate(screen)}
+      style={styles.itemContainer}>
       <View>
         <Text style={styles.itemTitle}>{title}</Text>
         {subtitle && <Text style={styles.itemSubtitle}>{subtitle}</Text>}
@@ -71,7 +75,7 @@ const Me = () => {
       <Table array={data} />
 
       <View style={{marginTop: 2 * L_SPACE}} />
-      <Item title={'Notifications'} />
+      <Item title={'Notifications'} screen={'Notifications'} />
     </View>
   );
 };

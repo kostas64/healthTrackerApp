@@ -14,6 +14,7 @@ import {DimUtils} from '../utils/DimensionUtils';
 import Achievements from '../screens/Achievements';
 import TrainButton from '../components/TrainButton';
 import HealthDetails from '../screens/HealthDetails';
+import Notifications from '../screens/Notifications';
 import {L_SPACE, M_SPACE, colors} from '../assets/constants';
 
 const Tab = createBottomTabNavigator();
@@ -112,6 +113,7 @@ export const Navigation = () => {
       <Stack.Screen name="Main" component={BottomStack} />
       <Stack.Screen name="SetGoal" component={SetGoal} />
       <Stack.Screen name="HealthDetails" component={HealthDetails} />
+      <Stack.Screen name="Notifications" component={Notifications} />
     </Stack.Navigator>
   );
 };
