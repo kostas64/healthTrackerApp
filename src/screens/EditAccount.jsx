@@ -15,7 +15,7 @@ import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
 import {L_SPACE, M_SPACE, WIDTH, colors, isIOS} from '../assets/constants';
 
-const Item = ({title, onChange}) => {
+const Item = ({title, onChange, keyboardType}) => {
   const inputRef = useRef();
   const [value, setValue] = useState(title);
 
@@ -24,6 +24,7 @@ const Item = ({title, onChange}) => {
       <TextInput
         ref={inputRef}
         value={value}
+        keyboardType={keyboardType}
         style={styles.itemTitle}
         onChangeText={val => {
           onChange(val);
@@ -69,14 +70,24 @@ const EditAccount = () => {
       </View>
 
       <Text style={styles.activityLabel}>Personal Information</Text>
-      <Item title={user.name} onChange={val => onItemChange('name', val)} />
+
+      <Item
+        title={user.name}
+        keyboardType={'default'}
+        onChange={val => onItemChange('name', val)}
+      />
       <View style={{marginTop: DimUtils.getDP(16)}} />
       <Item
         title={user.surname}
+        keyboardType={'default'}
         onChange={val => onItemChange('surname', val)}
       />
       <View style={{marginTop: DimUtils.getDP(16)}} />
-      <Item title={user.email} onChange={val => onItemChange('email', val)} />
+      <Item
+        title={user.email}
+        keyboardType={'email-address'}
+        onChange={val => onItemChange('email', val)}
+      />
     </ScrollView>
   );
 };
