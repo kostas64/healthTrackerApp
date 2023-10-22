@@ -15,7 +15,7 @@ import MyHeightPicker from '../components/MyHeightPicker';
 import MyWeightPicker from '../components/MyWeightPicker';
 import {L_SPACE, M_SPACE, XL_SPACE, colors} from '../assets/constants';
 
-const Table = ({array, setModalContent, onCloseBottomSheet}) => {
+const Table = ({array, setSnaps, setModalContent, onCloseBottomSheet}) => {
   const {user, setUser} = React.useContext(Context);
 
   const onPress = item => {
@@ -33,6 +33,7 @@ const Table = ({array, setModalContent, onCloseBottomSheet}) => {
     };
 
     if (item.type === 'birth') {
+      setSnaps([270]);
       setModalContent(
         <MyDatePicker
           date={moment(user?.birth).toDate()}
@@ -41,25 +42,31 @@ const Table = ({array, setModalContent, onCloseBottomSheet}) => {
         />,
       );
     } else if (item.type === 'gender') {
+      setSnaps([165]);
       setModalContent(
         <MyGenderPicker
           gender={user.gender}
+          contHeight={96}
           onChange={gender => onChange('gender', gender)}
           onPressDone={onCloseBottomSheet}
         />,
       );
     } else if (item.type === 'height') {
+      setSnaps([165]);
       setModalContent(
         <MyHeightPicker
           height={user.height}
+          contHeight={96}
           onChange={height => onChange('height', height)}
           onPressDone={onCloseBottomSheet}
         />,
       );
     } else {
+      setSnaps([165]);
       setModalContent(
         <MyWeightPicker
           weight={user.weight}
+          contHeight={96}
           onChange={weight => onChange('weight', weight)}
           onPressDone={onCloseBottomSheet}
         />,
@@ -94,6 +101,7 @@ const HealthDetails = () => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const bottomSheetRef = React.useRef();
+  const [snaps, setSnaps] = React.useState([270]);
   const [modalContent, setModalContent] = React.useState(null);
 
   const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
@@ -127,6 +135,7 @@ const HealthDetails = () => {
         <View style={{marginTop: 2 * XL_SPACE}} />
         <Table
           array={healthDetails}
+          setSnaps={setSnaps}
           setModalContent={setModalContent}
           onCloseBottomSheet={onCloseBottomSheet}
         />
@@ -135,7 +144,7 @@ const HealthDetails = () => {
       <Button label={'Done'} onPress={() => navigation.pop()} />
       <CustomBottomSheet
         ref={bottomSheetRef}
-        snapPoints={[270]}
+        snapPoints={snaps}
         modalContent={modalContent}
         onCloseBottomSheet={onCloseBottomSheet}
       />

@@ -5,6 +5,7 @@ import {DimUtils} from '../utils/DimensionUtils';
 export const colors = {
   black: 'black',
   lightGrey: '#c5c4cd',
+  indicatorGrey: '#f4f4f5',
   purple: 'rgba(82,67,172,1)',
   lightPurple: '#7569be',
   veryLightPurple: '#dcd8ee',

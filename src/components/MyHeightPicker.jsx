@@ -1,27 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {Picker} from '@react-native-picker/picker';
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
+import CustomPicker from './CustomPicker';
+import {colors} from '../assets/constants';
+import {HEIGHTS} from '../assets/healthDetails';
 import {DimUtils} from '../utils/DimensionUtils';
-import {WIDTH, colors} from '../assets/constants';
 
-const MyHeightPicker = ({height, onChange, onPressDone}) => {
-  const [items, setItems] = useState([]);
+const MyHeightPicker = ({height, onChange, onPressDone, contHeight}) => {
+  const items = HEIGHTS;
   const [selectedValue, setSelectedValue] = useState(height);
 
-  useEffect(() => {
-    let tmpArr = [];
-
-    for (let i = 30; i <= 250; i++) {
-      tmpArr.push(`${i} cm`);
-    }
-
-    setItems(tmpArr);
-
-    return () => {
-      setItems([]);
-    };
-  }, []);
   return (
     <View>
       {/* Done button */}
@@ -33,17 +21,18 @@ const MyHeightPicker = ({height, onChange, onPressDone}) => {
       </TouchableOpacity>
 
       {/* Gender picker */}
-      <Picker
-        style={{width: WIDTH}}
-        selectedValue={selectedValue}
-        onValueChange={itemValue => {
-          onChange(itemValue);
-          setSelectedValue(itemValue);
-        }}>
-        {items.map((item, index) => (
-          <Picker.Item key={index} label={item} value={item} />
-        ))}
-      </Picker>
+      <View style={styles.pickerContainer}>
+        <CustomPicker
+          items={items}
+          contHeight={contHeight}
+          indexToStart={items?.findIndex(item => item === height)}
+          itemHeight={32}
+          onIndexChange={index => {
+            onChange(items[index]);
+            setSelectedValue(items[index]);
+          }}
+        />
+      </View>
     </View>
   );
 };

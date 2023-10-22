@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
-import {Picker} from '@react-native-picker/picker';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
+import CustomPicker from './CustomPicker';
+import {colors} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
-import {WIDTH, colors} from '../assets/constants';
 
-const MyGenderPicker = ({gender, onChange, onPressDone}) => {
+const items = ['Male', 'Female', 'Other'];
+
+const MyGenderPicker = ({gender, onChange, onPressDone, contHeight}) => {
   const [selectedLanguage, setSelectedLanguage] = useState(gender);
 
   return (
-    <View style={styles.container}>
+    <View>
       {/* Done button */}
       <TouchableOpacity
         style={{marginRight: DimUtils.getDP(24)}}
@@ -19,16 +21,18 @@ const MyGenderPicker = ({gender, onChange, onPressDone}) => {
       </TouchableOpacity>
 
       {/* Gender picker */}
-      <Picker
-        style={{width: WIDTH}}
-        selectedValue={selectedLanguage}
-        onValueChange={itemValue => {
-          onChange(itemValue);
-          setSelectedLanguage(itemValue);
-        }}>
-        <Picker.Item label="Male" value="Male" />
-        <Picker.Item label="Female" value="Female" />
-      </Picker>
+      <View style={styles.pickerContainer}>
+        <CustomPicker
+          items={items}
+          contHeight={contHeight}
+          indexToStart={items?.findIndex(item => item === gender)}
+          itemHeight={32}
+          onIndexChange={index => {
+            onChange(items[index]);
+            setSelectedLanguage(items[index]);
+          }}
+        />
+      </View>
     </View>
   );
 };

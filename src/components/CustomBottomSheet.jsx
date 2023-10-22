@@ -25,6 +25,7 @@ const CustomBottomSheet = React.forwardRef(
         )}
         snapPoints={snapPoints}
         handleIndicatorStyle={styles.indicatorStyle}
+        enableContentPanningGesture={false} //Fix for Android Scroll inside BottomSheet
         enablePanDownToClose={true}>
         {modalContent}
       </BottomSheet>
