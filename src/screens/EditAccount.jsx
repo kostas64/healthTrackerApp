@@ -5,8 +5,9 @@ import {
   TextInput,
   ScrollView,
   StyleSheet,
+  Pressable,
 } from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {images} from '../assets/images';
@@ -15,11 +16,13 @@ import {DimUtils} from '../utils/DimensionUtils';
 import {L_SPACE, M_SPACE, WIDTH, colors, isIOS} from '../assets/constants';
 
 const Item = ({title, onChange}) => {
+  const inputRef = useRef();
   const [value, setValue] = useState(title);
 
   return (
     <View style={styles.itemContainer}>
       <TextInput
+        ref={inputRef}
         value={value}
         style={styles.itemTitle}
         onChangeText={val => {
@@ -27,7 +30,11 @@ const Item = ({title, onChange}) => {
           setValue(val);
         }}
       />
-      <Image source={images.edit} style={styles.edit} />
+      <Pressable
+        hitSlop={styles.hitSlop}
+        onPress={() => inputRef?.current?.focus()}>
+        <Image source={images.edit} style={styles.edit} />
+      </Pressable>
     </View>
   );
 };
@@ -113,6 +120,12 @@ const styles = StyleSheet.create({
     marginLeft: DimUtils.getDP(16),
     fontFamily: 'Rubik-Medium',
     fontSize: DimUtils.getDP(18),
+  },
+  hitSlop: {
+    top: DimUtils.getDP(24),
+    left: DimUtils.getDP(24),
+    right: DimUtils.getDP(24),
+    bottom: DimUtils.getDP(24),
   },
 });
 
