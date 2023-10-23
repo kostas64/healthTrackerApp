@@ -1,42 +1,19 @@
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  ScrollView,
-  StyleSheet,
-  Pressable,
-} from 'react-native';
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext} from 'react';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import {images} from '../assets/images';
 import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
-import {L_SPACE, M_SPACE, WIDTH, colors, isIOS} from '../assets/constants';
+import AccountItem from '../components/AccountItem';
+import {L_SPACE, M_SPACE} from '../assets/constants';
 
 const Item = ({title, onChange, keyboardType}) => {
-  const inputRef = useRef();
-  const [value, setValue] = useState(title);
-
   return (
-    <View style={styles.itemContainer}>
-      <TextInput
-        ref={inputRef}
-        value={value}
-        keyboardType={keyboardType}
-        style={styles.itemTitle}
-        onChangeText={val => {
-          onChange(val);
-          setValue(val);
-        }}
-      />
-      <Pressable
-        hitSlop={styles.hitSlop}
-        onPress={() => inputRef?.current?.focus()}>
-        <Image source={images.edit} style={styles.edit} />
-      </Pressable>
-    </View>
+    <AccountItem
+      title={title}
+      onChange={onChange}
+      keyboardType={keyboardType}
+    />
   );
 };
 
@@ -105,38 +82,12 @@ const styles = StyleSheet.create({
     fontSize: DimUtils.getFontSize(32),
     fontFamily: 'Rubik-SemiBold',
   },
-  itemContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: isIOS ? DimUtils.getDP(16) : DimUtils.getDP(4),
-    paddingHorizontal: DimUtils.getDP(16),
-    borderRadius: DimUtils.getDP(8),
-    backgroundColor: colors.lightestPurple,
-  },
-  itemTitle: {
-    width: WIDTH - DimUtils.getDP(96),
-    fontSize: DimUtils.getFontSize(16),
-    color: colors.purple,
-    fontFamily: 'Rubik-Regular',
-  },
-  edit: {
-    tintColor: colors.lightPurple,
-    width: DimUtils.getDP(16),
-    height: DimUtils.getDP(16),
-  },
   activityLabel: {
     marginTop: DimUtils.getDP(32),
     marginBottom: DimUtils.getDP(8),
     marginLeft: DimUtils.getDP(16),
     fontFamily: 'Rubik-Medium',
     fontSize: DimUtils.getDP(18),
-  },
-  hitSlop: {
-    top: DimUtils.getDP(24),
-    left: DimUtils.getDP(24),
-    right: DimUtils.getDP(24),
-    bottom: DimUtils.getDP(24),
   },
 });
 
