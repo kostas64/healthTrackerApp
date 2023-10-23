@@ -7,7 +7,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import {WIDTH} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
@@ -47,6 +47,9 @@ const Badge = ({item}) => {
         {
           rotateY: `${rotate}deg`,
         },
+        {
+          scale: scale.value,
+        },
       ],
     };
   });
@@ -77,11 +80,13 @@ const Badge = ({item}) => {
       disabled={!item.complete}
       onPress={onItemPress}
       style={[styles.container, !item.complete && {opacity: 0.3}]}>
-      <Animated.Image source={item.img} style={[animStyle, styles.img]} />
-      <Animated.Image
-        source={item.img}
-        style={[animStyle2, styles.img, styles.absolute]}
-      />
+      <View>
+        <Animated.Image
+          source={item.img}
+          style={[animStyle2, styles.img, styles.absolute]}
+        />
+        <Animated.Image source={item.img} style={[animStyle, styles.img]} />
+      </View>
       <Text numberOfLines={2} style={styles.label}>
         {item.name}
       </Text>
@@ -107,7 +112,6 @@ const styles = StyleSheet.create({
   },
   absolute: {
     position: 'absolute',
-    top: DimUtils.getDP(34),
   },
   label: {
     color: 'black',
