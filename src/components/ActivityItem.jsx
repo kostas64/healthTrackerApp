@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     color: 'black',
     marginTop: DimUtils.getDP(16),
     textAlign: 'center',
-    width: DimUtils.getDP(100),
+    width: DimUtils.getDP(110),
     fontFamily: 'Rubik-Medium',
   },
   img: {

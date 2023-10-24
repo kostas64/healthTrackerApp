@@ -45,6 +45,7 @@ const Train = ({route}) => {
 const styles = StyleSheet.create({
   containerStyle: {
     paddingBottom: 0,
+    alignItems: 'center',
     paddingHorizontal: DimUtils.getDP(24),
   },
   title: {
