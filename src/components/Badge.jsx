@@ -6,7 +6,8 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import React, {useEffect} from 'react';
+
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import {WIDTH} from '../assets/constants';
@@ -71,9 +72,8 @@ const Badge = ({item}) => {
     );
   };
 
-  useEffect(() => {
-    item?.complete && onItemPress();
-  }, []);
+  //No need for useEffect
+  item?.complete && onItemPress();
 
   return (
     <TouchableOpacity

@@ -4,7 +4,8 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import React, {useEffect} from 'react';
+
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {colors} from '../assets/constants';
@@ -23,9 +24,8 @@ const SuccessAnimation = React.forwardRef((props, ref) => {
     });
   };
 
-  useEffect(() => {
-    animateSuccess();
-  }, []);
+  //No need for useEffect
+  animateSuccess();
 
   return (
     <Animated.View style={[styles.container, animStyle]}>

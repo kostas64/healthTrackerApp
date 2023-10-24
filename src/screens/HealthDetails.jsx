@@ -116,11 +116,10 @@ const HealthDetails = () => {
     !!bottomSheetRef?.current && bottomSheetRef?.current?.close();
   }, []);
 
-  React.useEffect(() => {
-    if (modalContent) {
-      bottomSheetRef.current.expand();
-    }
-  }, [modalContent]);
+  //No need for useEffect
+  if (modalContent) {
+    bottomSheetRef.current.expand();
+  }
 
   return (
     <View style={[styles.container, {paddingTop, paddingBottom}]}>

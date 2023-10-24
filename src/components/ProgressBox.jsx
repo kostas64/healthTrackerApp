@@ -4,8 +4,9 @@ import Animated, {
   useSharedValue,
   useAnimatedProps,
 } from 'react-native-reanimated';
+
+import React from 'react';
 import {View} from 'react-native';
-import React, {useEffect} from 'react';
 import {useIsFocused} from '@react-navigation/native';
 import {Svg, Circle, Text as SVGText} from 'react-native-svg';
 
@@ -30,21 +31,20 @@ const ProgressBox = props => {
     };
   });
 
-  useEffect(() => {
-    if (isFocused) {
-      progressVal.value = radius * Math.PI * 2 * 0.99;
+  //No need for useEffect
+  if (isFocused) {
+    progressVal.value = radius * Math.PI * 2 * 0.99;
 
-      setTimeout(() => {
-        progressVal.value = withTiming(
-          radius * Math.PI * 2 * (svgProgress / 100),
-          {
-            duration: 500,
-            easing: Easing.cubic,
-          },
-        );
-      }, 250);
-    }
-  }, [isFocused]);
+    setTimeout(() => {
+      progressVal.value = withTiming(
+        radius * Math.PI * 2 * (svgProgress / 100),
+        {
+          duration: 500,
+          easing: Easing.cubic,
+        },
+      );
+    }, 250);
+  }
 
   return (
     <View style={{margin: DimUtils.getDP(4), alignSelf: 'center'}}>

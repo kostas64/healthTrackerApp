@@ -1,5 +1,5 @@
+import React, {useRef} from 'react';
 import {View, Animated, StyleSheet} from 'react-native';
-import React, {useEffect, useRef} from 'react';
 
 import {colors} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
@@ -12,81 +12,80 @@ const Walking = () => {
   const headIn = useRef(new Animated.Value(5)).current;
   const road = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    if (isFocused) {
-      //Animate person
-      Animated.loop(
-        Animated.sequence([
-          Animated.parallel([
-            Animated.timing(headOut, {
-              toValue: 0,
-              duration: 350,
-              useNativeDriver: true,
-            }),
-            Animated.timing(headIn, {
-              toValue: 0,
-              duration: 350,
-              useNativeDriver: true,
-            }),
-          ]),
-          Animated.parallel([
-            Animated.timing(headOut, {
-              toValue: 5,
-              duration: 350,
-              useNativeDriver: true,
-            }),
-            Animated.timing(headIn, {
-              toValue: 5,
-              duration: 350,
-              useNativeDriver: true,
-            }),
-          ]),
+  //No need for useEffect
+  if (isFocused) {
+    //Animate person
+    Animated.loop(
+      Animated.sequence([
+        Animated.parallel([
+          Animated.timing(headOut, {
+            toValue: 0,
+            duration: 350,
+            useNativeDriver: true,
+          }),
+          Animated.timing(headIn, {
+            toValue: 0,
+            duration: 350,
+            useNativeDriver: true,
+          }),
         ]),
-      ).start();
+        Animated.parallel([
+          Animated.timing(headOut, {
+            toValue: 5,
+            duration: 350,
+            useNativeDriver: true,
+          }),
+          Animated.timing(headIn, {
+            toValue: 5,
+            duration: 350,
+            useNativeDriver: true,
+          }),
+        ]),
+      ]),
+    ).start();
 
-      //Animate road
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(road, {
-            toValue: -16,
-            duration: 350,
-            delay: 350,
-            useNativeDriver: true,
-          }),
-          Animated.timing(road, {
-            toValue: 8,
-            duration: 350,
-            delay: 350,
-            useNativeDriver: true,
-          }),
-          Animated.timing(road, {
-            toValue: 0,
-            duration: 175,
-            delay: 350,
-            useNativeDriver: true,
-          }),
-          Animated.timing(road, {
-            toValue: -16,
-            duration: 350,
-            delay: 350,
-            useNativeDriver: true,
-          }),
-          Animated.timing(road, {
-            toValue: 8,
-            duration: 350,
-            delay: 350,
-            useNativeDriver: true,
-          }),
-          Animated.timing(road, {
-            toValue: 0,
-            duration: 175,
-            delay: 350,
-            useNativeDriver: true,
-          }),
-        ]),
-      ).start();
-    }
-  }, [isFocused]);
+    //Animate road
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(road, {
+          toValue: -16,
+          duration: 350,
+          delay: 350,
+          useNativeDriver: true,
+        }),
+        Animated.timing(road, {
+          toValue: 8,
+          duration: 350,
+          delay: 350,
+          useNativeDriver: true,
+        }),
+        Animated.timing(road, {
+          toValue: 0,
+          duration: 175,
+          delay: 350,
+          useNativeDriver: true,
+        }),
+        Animated.timing(road, {
+          toValue: -16,
+          duration: 350,
+          delay: 350,
+          useNativeDriver: true,
+        }),
+        Animated.timing(road, {
+          toValue: 8,
+          duration: 350,
+          delay: 350,
+          useNativeDriver: true,
+        }),
+        Animated.timing(road, {
+          toValue: 0,
+          duration: 175,
+          delay: 350,
+          useNativeDriver: true,
+        }),
+      ]),
+    ).start();
+  }
 
   return (
     <View style={styles.container}>

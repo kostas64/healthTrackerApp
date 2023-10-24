@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react';
+import {useRef} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Animated, StyleSheet, TouchableOpacity, View} from 'react-native';
@@ -51,13 +51,12 @@ const TabBar = ({state, descriptors, navigation}) => {
           });
         };
 
-        useEffect(() => {
-          Animated.timing(scale, {
-            toValue: isFocused ? 1.2 : 1,
-            duration: 250,
-            useNativeDriver: true,
-          }).start();
-        }, [isFocused]);
+        //No need for useEffect
+        Animated.timing(scale, {
+          toValue: isFocused ? 1.2 : 1,
+          duration: 250,
+          useNativeDriver: true,
+        }).start();
 
         const opacity = isFocused || route.name === 'Train' ? 1 : 0.25;
 

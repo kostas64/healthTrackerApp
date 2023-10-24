@@ -18,7 +18,7 @@ const AccountItem = ({title, onChange, keyboardType}) => {
       onChange(value);
       setAnimPlaying(true);
     }
-  }, [value]);
+  }, [value, title]);
 
   return (
     <View style={styles.itemContainer}>
