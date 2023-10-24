@@ -4,6 +4,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
+import BackButton from '../components/BackButton';
 import AccountItem from '../components/AccountItem';
 import {L_SPACE, M_SPACE} from '../assets/constants';
 
@@ -17,9 +18,11 @@ const Item = ({title, onChange, keyboardType}) => {
   );
 };
 
-const EditAccount = () => {
+const EditAccount = ({route}) => {
   const insets = useSafeAreaInsets();
   const {user, setUser} = useContext(Context);
+
+  const fromLabel = route?.params?.from;
 
   const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
   const paddingBottom =
@@ -41,6 +44,9 @@ const EditAccount = () => {
       bounces={false}
       keyboardShouldPersistTaps="handled"
       style={[styles.container, {paddingTop, paddingBottom}]}>
+      {/* Go back button */}
+      <BackButton label={fromLabel} />
+
       {/* Title & Subtitle */}
       <View>
         <Text style={styles.title}>Account Settings</Text>
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik-SemiBold',
   },
   activityLabel: {
-    marginTop: DimUtils.getDP(32),
+    marginTop: DimUtils.getDP(24),
     marginBottom: DimUtils.getDP(8),
     marginLeft: DimUtils.getDP(16),
     fontFamily: 'Rubik-Medium',

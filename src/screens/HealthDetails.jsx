@@ -8,6 +8,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Button from '../components/Button';
 import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
+import BackButton from '../components/BackButton';
 import MyDatePicker from '../components/MyDatePicker';
 import {healthDetails} from '../assets/healthDetails';
 import MyGenderPicker from '../components/MyGenderPicker';
@@ -109,7 +110,7 @@ const HealthDetails = () => {
     insets.bottom > 0 ? insets.bottom + M_SPACE : 2 * L_SPACE;
 
   const subtitle =
-    'This information ensures Fitness and Health data are as accurate as possible. These details are not shared with anyone.';
+    'This information ensures data results are as accurate as possible, without to be shared.';
 
   const onCloseBottomSheet = React.useCallback(() => {
     setModalContent(null);
@@ -124,9 +125,12 @@ const HealthDetails = () => {
   return (
     <View style={[styles.container, {paddingTop, paddingBottom}]}>
       <View>
+        {/*Go back button */}
+        <BackButton label="Profile" />
+
         {/* Title & Subtitle */}
         <View>
-          <Text style={styles.title}>Personalise Fitness and Health</Text>
+          <Text style={styles.title}>Personalise Fitness</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
         </View>
 

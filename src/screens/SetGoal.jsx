@@ -6,13 +6,15 @@ import Button from '../components/Button';
 import {Context} from '../context/Context';
 import Counter from '../components/Counter';
 import {DimUtils} from '../utils/DimensionUtils';
+import BackButton from '../components/BackButton';
 import {L_SPACE, M_SPACE} from '../assets/constants';
 
-const SetGoal = ({navigation}) => {
+const SetGoal = ({navigation, route}) => {
   const insets = useSafeAreaInsets();
+  const [number, setNumber] = useState(goalSteps);
   const {goalSteps, setGoalSteps} = useContext(Context);
 
-  const [number, setNumber] = useState(goalSteps);
+  const fromLabel = route?.params?.from;
 
   const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
   const paddingBottom =
@@ -27,10 +29,15 @@ const SetGoal = ({navigation}) => {
 
   return (
     <View style={[styles.container, {paddingTop, paddingBottom}]}>
-      {/* Title & Subtitle */}
       <View>
-        <Text style={styles.title}>Your Daily Move Goal</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
+        {/* Go back button */}
+        <BackButton label={fromLabel} />
+
+        {/* Title & Subtitle */}
+        <View>
+          <Text style={styles.title}>Your Daily Move Goal</Text>
+          <Text style={styles.subtitle}>{subtitle}</Text>
+        </View>
       </View>
 
       {/* Counter */}

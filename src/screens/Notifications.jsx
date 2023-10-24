@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Switch} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {DimUtils} from '../utils/DimensionUtils';
+import BackButton from '../components/BackButton';
 import {L_SPACE, M_SPACE, colors} from '../assets/constants';
 
 const Item = ({title, subtitle, caption}) => {
@@ -36,6 +37,9 @@ const Notifications = () => {
 
   return (
     <View style={[styles.container, {paddingTop, paddingBottom}]}>
+      {/* Go back button */}
+      <BackButton label={'Profile'} />
+
       {/* Title & Subtitle */}
       <View>
         <Text style={styles.title}>Notifications</Text>
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik-SemiBold',
   },
   activityLabel: {
-    marginTop: DimUtils.getDP(32),
+    marginTop: DimUtils.getDP(24),
     marginBottom: DimUtils.getDP(8),
     marginLeft: DimUtils.getDP(16),
     fontFamily: 'Rubik-Medium',

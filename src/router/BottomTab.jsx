@@ -109,6 +109,10 @@ export const Navigation = () => {
     animation: 'slide_from_right',
   };
 
+  const optionsBottom = {
+    animation: 'slide_from_bottom',
+  };
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -127,6 +131,7 @@ export const Navigation = () => {
         component={Notifications}
         options={options}
       />
+      <Stack.Screen name="TrainMe" component={Train} options={optionsBottom} />
     </Stack.Navigator>
   );
 };

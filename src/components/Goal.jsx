@@ -13,6 +13,11 @@ const Goal = () => {
   const navigation = useNavigation();
   const {goalSteps} = useContext(Context);
 
+  const onPress = () =>
+    navigation.navigate('SetGoal', {
+      from: 'Your activity',
+    });
+
   return (
     <View style={styles.container}>
       <View style={[styles.rowCenter]}>
@@ -29,7 +34,7 @@ const Goal = () => {
 
       <Button
         label={'Set new goal'}
-        onPress={() => navigation.navigate('SetGoal')}
+        onPress={onPress}
         buttonLabelStyle={styles.buttonLabel}
         buttonContainerStyle={styles.buttonContainer}
       />

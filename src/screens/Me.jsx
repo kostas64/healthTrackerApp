@@ -22,10 +22,14 @@ const data = [
 const Item = ({title, subtitle, screen}) => {
   const navigation = useNavigation();
 
+  const onPress = () => {
+    navigation.navigate(screen, {
+      from: 'Profile',
+    });
+  };
+
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate(screen)}
-      style={styles.itemContainer}>
+    <TouchableOpacity onPress={onPress} style={styles.itemContainer}>
       <View>
         <Text style={styles.itemTitle}>{title}</Text>
         {subtitle && <Text style={styles.itemSubtitle}>{subtitle}</Text>}
@@ -39,7 +43,10 @@ const Table = ({array}) => {
   const navigation = useNavigation();
 
   const onPress = item => {
-    !!item.screen && navigation.navigate(item.screen);
+    !!item.screen &&
+      navigation.navigate(item.screen, {
+        from: 'Profile',
+      });
   };
 
   return (

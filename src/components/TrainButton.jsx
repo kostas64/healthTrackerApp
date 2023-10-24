@@ -1,12 +1,17 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import {colors} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
 
 const TrainButton = () => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('TrainMe')}
+      style={styles.container}>
       <Text style={styles.label}>GO</Text>
     </TouchableOpacity>
   );
