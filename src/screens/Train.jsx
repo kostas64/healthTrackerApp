@@ -3,9 +3,9 @@ import {Text, StyleSheet, FlatList} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import Screen from '../components/Screen';
+import {L_SPACE} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
 import {activities} from '../assets/activitiesData';
-import {L_SPACE, M_SPACE} from '../assets/constants';
 import ActivityItem from '../components/ActivityItem';
 
 const ListHeader = () => <Text style={styles.title}>{'Choose activity'}</Text>;
@@ -14,8 +14,7 @@ const Train = ({route}) => {
   const insets = useSafeAreaInsets();
   const fromLabel = route?.params?.from;
 
-  const paddingBottom =
-    insets.bottom > 0 ? insets.bottom + M_SPACE : 2 * L_SPACE;
+  const paddingBottom = insets.bottom > 0 ? insets.bottom : 2 * L_SPACE;
 
   const renderItem = ({item, index}) => (
     <ActivityItem key={`activity-${index}`} item={item} />
