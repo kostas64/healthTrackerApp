@@ -23,6 +23,19 @@ const Profile = require('./images/user.png');
 const Achievements = require('./images/medal.png');
 const Home = require('./images/home.png');
 
+const yoga = require('./images/yoga.png');
+const basketball = require('./images/basketball.png');
+const cycling = require('./images/cycling.png');
+const dancing = require('./images/dancing.png');
+const hiking = require('./images/hiking.png');
+const martialArts = require('./images/martial-arts.png');
+const pilates = require('./images/pilates.png');
+const running = require('./images/running.png');
+const skiing = require('./images/skiing.png');
+const snowboarding = require('./images/snowboarding.png');
+const swimming = require('./images/swimming.png');
+const tennis = require('./images/tennis.png');
+
 export const images = {
   Activity,
   Profile,
@@ -46,4 +59,16 @@ export const images = {
   badgeOrange2,
   badgePurple1,
   badgePurple2,
+  yoga,
+  basketball,
+  cycling,
+  dancing,
+  hiking,
+  martialArts,
+  pilates,
+  running,
+  skiing,
+  snowboarding,
+  swimming,
+  tennis,
 };
