@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: (WIDTH - 48 - 16) / 2,
     padding: DimUtils.getDP(2 * L_SPACE),
-    borderRadius: 2 * XL_SPACE,
+    borderRadius: DimUtils.getDP(32),
     overflow: 'hidden',
   },
   title: {

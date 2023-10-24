@@ -18,14 +18,14 @@ const badgeOrange2 = require('./images/badge_or_2.png');
 const badgePurple1 = require('./images/badge_pur_1.png');
 const badgePurple2 = require('./images/badge_pur_2.png');
 
-const Stats = require('./images/bar.png');
-const Me = require('./images/user.png');
+const Activity = require('./images/bar.png');
+const Profile = require('./images/user.png');
 const Achievements = require('./images/medal.png');
 const Home = require('./images/home.png');
 
 export const images = {
-  Stats,
-  Me,
+  Activity,
+  Profile,
   Achievements,
   Home,
   arrow,
