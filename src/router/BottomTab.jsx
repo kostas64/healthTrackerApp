@@ -4,11 +4,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Animated, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Me from '../screens/Me';
 import Home from '../screens/Home';
 import Stats from '../screens/Stats';
 import Train from '../screens/Train';
 import {images} from '../assets/images';
+import Profile from '../screens/Profile';
 import SetGoal from '../screens/SetGoal';
 import {DimUtils} from '../utils/DimensionUtils';
 import EditAccount from '../screens/EditAccount';
@@ -96,8 +96,8 @@ const BottomStack = () => {
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Achievements" component={Achievements} />
       <Tab.Screen name="Train" component={Train} />
-      <Tab.Screen name="Stats" component={Stats} />
-      <Tab.Screen name="Me" component={Me} />
+      <Tab.Screen name="Activity" component={Stats} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 };
@@ -111,6 +111,7 @@ export const Navigation = () => {
 
   const optionsBottom = {
     animation: 'slide_from_bottom',
+    gestureEnabled: false,
   };
 
   return (

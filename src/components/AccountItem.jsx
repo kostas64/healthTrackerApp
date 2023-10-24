@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: isIOS ? DimUtils.getDP(16) : DimUtils.getDP(4),
+    paddingVertical: isIOS ? DimUtils.getDP(16) : DimUtils.getDP(2),
     paddingHorizontal: DimUtils.getDP(16),
     borderRadius: DimUtils.getDP(8),
     backgroundColor: colors.lightestPurple,

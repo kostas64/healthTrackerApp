@@ -127,7 +127,7 @@ const HealthDetails = () => {
         <View>
           {/* Title & Subtitle */}
           <View>
-            <Text style={styles.title}>Personalise Fitness</Text>
+            <Text style={styles.title}>Personalised Fitness</Text>
             <Text style={styles.subtitle}>{subtitle}</Text>
           </View>
 

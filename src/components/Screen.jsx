@@ -12,6 +12,7 @@ const BottomTabScreen = ({
   containerStyle,
   backButtonLabel,
   isScrollable,
+  rotateBack,
   renderInsetPaddings,
   title,
   subtitle,
@@ -21,7 +22,6 @@ const BottomTabScreen = ({
   const insets = useSafeAreaInsets();
 
   const Wrapper = isScrollable ? ScrollView : View;
-  const showBackButton = !!hasBackButton && !!backButtonLabel;
 
   const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
   const paddingBottom =
@@ -39,7 +39,9 @@ const BottomTabScreen = ({
       {!noHeader && (
         <Header title={title} subtitle={subtitle} scrollY={scrollY} />
       )}
-      {showBackButton && <BackButton label={backButtonLabel} />}
+      {hasBackButton && (
+        <BackButton label={backButtonLabel} rotate={rotateBack} />
+      )}
       {children}
     </Wrapper>
   );

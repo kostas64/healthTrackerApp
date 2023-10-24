@@ -15,7 +15,7 @@ const Goal = () => {
 
   const onPress = () =>
     navigation.navigate('SetGoal', {
-      from: 'Your activity',
+      from: 'Activity',
     });
 
   return (

@@ -4,8 +4,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import {Navigation} from './src/router/BottomTab';
-import StatusBarManager from './src/components/StatusBarManager';
 import ContextProvider from './src/context/Context';
+import StatusBarManager from './src/components/StatusBarManager';
 
 const App = () => {
   return (

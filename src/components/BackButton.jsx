@@ -5,7 +5,7 @@ import {Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {images} from '../assets/images';
 import {DimUtils} from '../utils/DimensionUtils';
 
-const BackButton = ({label}) => {
+const BackButton = ({label, rotate}) => {
   const navigation = useNavigation();
 
   const onPress = () => navigation.pop();
@@ -15,7 +15,10 @@ const BackButton = ({label}) => {
       hitSlop={styles.hitslop}
       style={styles.container}
       onPress={onPress}>
-      <Image source={images.arrow} style={styles.icon} />
+      <Image
+        source={images.arrow}
+        style={[styles.icon, rotate && {transform: [{rotate}]}]}
+      />
       {label && <Text style={styles.label}>{label}</Text>}
     </TouchableOpacity>
   );

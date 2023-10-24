@@ -68,11 +68,11 @@ const Table = ({array}) => {
   );
 };
 
-const Me = () => {
+const Profile = () => {
   const {user} = useContext(Context);
 
   return (
-    <Screen title={'Me'} subtitle={'Profile'}>
+    <Screen title={'Profile'} subtitle={'Me'}>
       <View style={{marginTop: XL_SPACE}} />
       <Item
         title={`${user.name} ${user.surname}`}
@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Me;
+export default Profile;
