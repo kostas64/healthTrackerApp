@@ -13,7 +13,7 @@ const TrainButton = () => {
 
   const onPress = () =>
     navigation.navigate('TrainMe', {
-      from: screenName,
+      from: screenName || 'Home',
     });
 
   return (
