@@ -1,24 +1,17 @@
 import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import Button from '../components/Button';
+import Screen from '../components/Screen';
 import {Context} from '../context/Context';
 import Counter from '../components/Counter';
 import {DimUtils} from '../utils/DimensionUtils';
-import BackButton from '../components/BackButton';
-import {L_SPACE, M_SPACE} from '../assets/constants';
 
 const SetGoal = ({navigation, route}) => {
-  const insets = useSafeAreaInsets();
-  const [number, setNumber] = useState(goalSteps);
   const {goalSteps, setGoalSteps} = useContext(Context);
+  const [number, setNumber] = useState(goalSteps);
 
   const fromLabel = route?.params?.from;
-
-  const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
-  const paddingBottom =
-    insets.bottom > 0 ? insets.bottom + M_SPACE : 2 * L_SPACE;
 
   const subtitle =
     "Set a goal based on how active you are, or how active you'd like to be, each day.";
@@ -28,43 +21,46 @@ const SetGoal = ({navigation, route}) => {
   };
 
   return (
-    <View style={[styles.container, {paddingTop, paddingBottom}]}>
-      <View>
-        {/* Go back button */}
-        <BackButton label={fromLabel} />
-
+    <Screen
+      noHeader
+      backButtonLabel={fromLabel}
+      renderInsetPaddings
+      hasBackButton
+      containerStyle={styles.containerStyle}>
+      <View style={styles.innerContainer}>
         {/* Title & Subtitle */}
         <View>
           <Text style={styles.title}>Your Daily Move Goal</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
         </View>
+
+        {/* Counter */}
+        <Counter
+          number={number}
+          setNumber={setNumber}
+          changeNumber={changeNumber}
+        />
+
+        {/* Button */}
+        <Button
+          label={'Change move goal'}
+          onPress={() => {
+            setGoalSteps(number);
+            navigation.pop();
+          }}
+        />
       </View>
-
-      {/* Counter */}
-      <Counter
-        number={number}
-        setNumber={setNumber}
-        changeNumber={changeNumber}
-      />
-
-      {/* Button */}
-      <Button
-        label={'Change move goal'}
-        onPress={() => {
-          setGoalSteps(number);
-          navigation.pop();
-        }}
-      />
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  containerStyle: {
+    paddingHorizontal: DimUtils.getDP(24),
+  },
+  innerContainer: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: 'white',
-    paddingHorizontal: DimUtils.getDP(24),
   },
   title: {
     color: 'black',

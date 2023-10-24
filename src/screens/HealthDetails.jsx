@@ -2,19 +2,18 @@ import React from 'react';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 import CustomBottomSheet from '../components/CustomBottomSheet';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import Button from '../components/Button';
+import Screen from '../components/Screen';
 import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
-import BackButton from '../components/BackButton';
+import {XL_SPACE, colors} from '../assets/constants';
 import MyDatePicker from '../components/MyDatePicker';
 import {healthDetails} from '../assets/healthDetails';
 import MyGenderPicker from '../components/MyGenderPicker';
 import MyHeightPicker from '../components/MyHeightPicker';
 import MyWeightPicker from '../components/MyWeightPicker';
-import {L_SPACE, M_SPACE, XL_SPACE, colors} from '../assets/constants';
 
 const Table = ({array, setSnaps, setModalContent, onCloseBottomSheet}) => {
   const {user, setUser} = React.useContext(Context);
@@ -100,14 +99,9 @@ const Table = ({array, setSnaps, setModalContent, onCloseBottomSheet}) => {
 
 const HealthDetails = () => {
   const navigation = useNavigation();
-  const insets = useSafeAreaInsets();
   const bottomSheetRef = React.useRef();
   const [snaps, setSnaps] = React.useState([270]);
   const [modalContent, setModalContent] = React.useState(null);
-
-  const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
-  const paddingBottom =
-    insets.bottom > 0 ? insets.bottom + M_SPACE : 2 * L_SPACE;
 
   const subtitle =
     'This information ensures data results are as accurate as possible, without to be shared.';
@@ -123,44 +117,49 @@ const HealthDetails = () => {
   }
 
   return (
-    <View style={[styles.container, {paddingTop, paddingBottom}]}>
-      <View>
-        {/*Go back button */}
-        <BackButton label="Profile" />
-
-        {/* Title & Subtitle */}
+    <Screen
+      noHeader
+      hasBackButton
+      renderInsetPaddings
+      backButtonLabel={'Profile'}
+      containerStyle={styles.containerStyle}>
+      <View style={styles.innerContainer}>
         <View>
-          <Text style={styles.title}>Personalise Fitness</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+          {/* Title & Subtitle */}
+          <View>
+            <Text style={styles.title}>Personalise Fitness</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
+          </View>
+
+          {/* Table */}
+          <View style={{marginTop: 2 * XL_SPACE}} />
+          <Table
+            array={healthDetails}
+            setSnaps={setSnaps}
+            setModalContent={setModalContent}
+            onCloseBottomSheet={onCloseBottomSheet}
+          />
         </View>
 
-        {/* Table */}
-        <View style={{marginTop: 2 * XL_SPACE}} />
-        <Table
-          array={healthDetails}
-          setSnaps={setSnaps}
-          setModalContent={setModalContent}
-          onCloseBottomSheet={onCloseBottomSheet}
-        />
+        <Button label={'Done'} onPress={() => navigation.pop()} />
       </View>
-
-      <Button label={'Done'} onPress={() => navigation.pop()} />
       <CustomBottomSheet
         ref={bottomSheetRef}
         snapPoints={snaps}
         modalContent={modalContent}
         onCloseBottomSheet={onCloseBottomSheet}
       />
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'space-between',
+  containerStyle: {
     paddingHorizontal: DimUtils.getDP(24),
+  },
+  innerContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
   title: {
     color: 'black',

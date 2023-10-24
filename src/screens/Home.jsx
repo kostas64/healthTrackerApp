@@ -4,7 +4,7 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 import Box from '../components/Box';
 import {images} from '../assets/images';
 import {getDates} from '../utils/Dates';
-import Header from '../components/Header';
+import Screen from '../components/Screen';
 import {Context} from '../context/Context';
 import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 
@@ -15,8 +15,7 @@ const Home = () => {
   const progress = Number(parseInt(steps)) / goalSteps;
 
   return (
-    <View style={styles.outContainer}>
-      <Header title={'For today'} subtitle={`Welcome ${user?.name}!`} />
+    <Screen title={'For today'} subtitle={`Welcome ${user?.name}!`}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingBottom: 24}}
@@ -71,15 +70,11 @@ const Home = () => {
           />
         </View>
       </ScrollView>
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  outContainer: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   container: {
     flex: 1,
     marginHorizontal: 2 * L_SPACE,

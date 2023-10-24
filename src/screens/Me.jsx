@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 
 import {images} from '../assets/images';
-import Header from '../components/Header';
+import Screen from '../components/Screen';
 import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
 import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
@@ -72,9 +72,7 @@ const Me = () => {
   const {user} = useContext(Context);
 
   return (
-    <View style={styles.container}>
-      <Header title={'Me'} subtitle={'Profile'} />
-
+    <Screen title={'Me'} subtitle={'Profile'}>
       <View style={{marginTop: XL_SPACE}} />
       <Item
         title={`${user.name} ${user.surname}`}
@@ -87,15 +85,11 @@ const Me = () => {
 
       <View style={{marginTop: 2 * L_SPACE}} />
       <Item title={'Notifications'} screen={'Notifications'} />
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',

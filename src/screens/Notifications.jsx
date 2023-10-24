@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Switch} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
+import Screen from '../components/Screen';
+import {colors} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
-import BackButton from '../components/BackButton';
-import {L_SPACE, M_SPACE, colors} from '../assets/constants';
 
 const Item = ({title, subtitle, caption}) => {
   const [switchEn, setSwitchEn] = useState(true);
@@ -29,17 +28,13 @@ const Item = ({title, subtitle, caption}) => {
 };
 
 const Notifications = () => {
-  const insets = useSafeAreaInsets();
-
-  const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
-  const paddingBottom =
-    insets.bottom > 0 ? insets.bottom + M_SPACE : 2 * L_SPACE;
-
   return (
-    <View style={[styles.container, {paddingTop, paddingBottom}]}>
-      {/* Go back button */}
-      <BackButton label={'Profile'} />
-
+    <Screen
+      noHeader
+      hasBackButton
+      renderInsetPaddings
+      backButtonLabel={'Profile'}
+      containerStyle={styles.containerStyle}>
       {/* Title & Subtitle */}
       <View>
         <Text style={styles.title}>Notifications</Text>
@@ -65,14 +60,12 @@ const Notifications = () => {
           'Receive a notification when someone who shares Activity with you completes a workout or earns an award.'
         }
       />
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
+  containerStyle: {
     paddingHorizontal: DimUtils.getDP(24),
   },
   title: {

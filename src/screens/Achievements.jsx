@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
 
 import Badge from '../components/Badge';
-import Header from '../components/Header';
+import Screen from '../components/Screen';
 import {badges} from '../assets/badgeData';
 import {DimUtils} from '../utils/DimensionUtils';
 
@@ -12,26 +12,21 @@ const Achievements = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Header title={'Your achievements'} subtitle={'Check your badges'} />
-
+    <Screen title={'Your achievements'} subtitle={'Check your badges'}>
       <FlatList
         data={badges}
         numColumns={2}
         renderItem={renderItem}
-        contentContainerStyle={{
-          paddingHorizontal: DimUtils.getDP(24),
-          paddingBottom: 8,
-        }}
+        contentContainerStyle={styles.listContainer}
       />
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
+  listContainer: {
+    paddingHorizontal: DimUtils.getDP(24),
+    paddingBottom: DimUtils.getDP(8),
   },
 });
 

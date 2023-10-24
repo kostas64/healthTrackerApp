@@ -9,8 +9,8 @@ import React, {useRef, useState} from 'react';
 
 import Goal from '../components/Goal';
 import {getDates} from '../utils/Dates';
-import Header from '../components/Header';
 import NoData from '../components/NoData';
+import Screen from '../components/Screen';
 import {colors} from '../assets/constants';
 import BoxStats from '../components/BoxStats';
 import LineChart from '../components/LineChart';
@@ -35,9 +35,7 @@ const Stats = () => {
   });
 
   return (
-    <View style={styles.container}>
-      <Header title={'Your activity'} subtitle={'Today'} scrollY={scrollY} />
-
+    <Screen title={'Your activity'} subtitle={'Today'} scrollY={scrollY}>
       {/* Dates */}
       <CalendarList
         scrollY={scrollY}
@@ -80,15 +78,11 @@ const Stats = () => {
           <NoData />
         )}
       </Animated.ScrollView>
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   boxContainer: {
     marginVertical: DimUtils.getDP(24),
     flexDirection: 'row',

@@ -1,12 +1,10 @@
 import React, {useContext} from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {View, Text, StyleSheet} from 'react-native';
 
+import Screen from '../components/Screen';
 import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
-import BackButton from '../components/BackButton';
 import AccountItem from '../components/AccountItem';
-import {L_SPACE, M_SPACE} from '../assets/constants';
 
 const Item = ({title, onChange, keyboardType}) => {
   return (
@@ -19,14 +17,9 @@ const Item = ({title, onChange, keyboardType}) => {
 };
 
 const EditAccount = ({route}) => {
-  const insets = useSafeAreaInsets();
   const {user, setUser} = useContext(Context);
 
   const fromLabel = route?.params?.from;
-
-  const paddingTop = insets.top > 0 ? insets.top + M_SPACE : 2 * L_SPACE;
-  const paddingBottom =
-    insets.bottom > 0 ? insets.bottom + M_SPACE : 2 * L_SPACE;
 
   const onItemChange = (type, val) => {
     setUser({
@@ -40,17 +33,15 @@ const EditAccount = ({route}) => {
   };
 
   return (
-    <ScrollView
-      bounces={false}
-      keyboardShouldPersistTaps="handled"
-      style={[styles.container, {paddingTop, paddingBottom}]}>
-      {/* Go back button */}
-      <BackButton label={fromLabel} />
-
-      {/* Title & Subtitle */}
-      <View>
-        <Text style={styles.title}>Account Settings</Text>
-      </View>
+    <Screen
+      noHeader
+      isScrollable
+      hasBackButton
+      renderInsetPaddings
+      backButtonLabel={fromLabel}
+      containerStyle={styles.containerStyle}>
+      {/* Title  */}
+      <Text style={styles.title}>Account Settings</Text>
 
       <Text style={styles.activityLabel}>Personal Information</Text>
 
@@ -59,26 +50,24 @@ const EditAccount = ({route}) => {
         keyboardType={'default'}
         onChange={val => onItemChange('name', val)}
       />
-      <View style={{marginTop: DimUtils.getDP(16)}} />
+      <View style={styles.space} />
       <Item
         title={user.surname}
         keyboardType={'default'}
         onChange={val => onItemChange('surname', val)}
       />
-      <View style={{marginTop: DimUtils.getDP(16)}} />
+      <View style={styles.space} />
       <Item
         title={user.email}
         keyboardType={'email-address'}
         onChange={val => onItemChange('email', val)}
       />
-    </ScrollView>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
+  containerStyle: {
     paddingHorizontal: DimUtils.getDP(24),
   },
   title: {
@@ -94,6 +83,9 @@ const styles = StyleSheet.create({
     marginLeft: DimUtils.getDP(16),
     fontFamily: 'Rubik-Medium',
     fontSize: DimUtils.getDP(18),
+  },
+  space: {
+    marginTop: DimUtils.getDP(16),
   },
 });
 
