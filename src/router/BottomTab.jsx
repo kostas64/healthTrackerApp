@@ -6,10 +6,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Home from '../screens/Home';
 import Stats from '../screens/Stats';
-import Train from '../screens/Train';
 import {images} from '../assets/images';
 import Profile from '../screens/Profile';
 import SetGoal from '../screens/SetGoal';
+import Activity from '../screens/Activity';
+import Train from '../screens/ChooseActivity';
 import {DimUtils} from '../utils/DimensionUtils';
 import EditAccount from '../screens/EditAccount';
 import Achievements from '../screens/Achievements';
@@ -132,7 +133,12 @@ export const Navigation = () => {
         component={Notifications}
         options={options}
       />
-      <Stack.Screen name="TrainMe" component={Train} options={optionsBottom} />
+      <Stack.Screen
+        name="ChooseActivity"
+        component={Train}
+        options={optionsBottom}
+      />
+      <Stack.Screen name="Activity" component={Activity} options={options} />
     </Stack.Navigator>
   );
 };

@@ -11,7 +11,7 @@ import {L_SPACE, WIDTH, XL_SPACE} from '../assets/constants';
 
 const ListHeader = () => <Text style={styles.title}>{'Choose activity'}</Text>;
 
-const Train = ({route}) => {
+const ChooseActivity = ({navigation, route}) => {
   const insets = useSafeAreaInsets();
   const [selectedAct, setSelectedAct] = React.useState(null);
 
@@ -19,6 +19,11 @@ const Train = ({route}) => {
 
   const paddingBottom = insets.bottom > 0 ? insets.bottom : 2 * L_SPACE;
   const listBottomSpace = paddingBottom + 4 * XL_SPACE;
+
+  const onPress = () =>
+    navigation.navigate('Activity', {
+      activity: selectedAct,
+    });
 
   const renderItem = ({item, index}) => {
     const isSelected = item.label === selectedAct;
@@ -63,6 +68,7 @@ const Train = ({route}) => {
 
       {/* Start activity */}
       <Button
+        onPress={onPress}
         disabled={!selectedAct}
         label={'Start activity'}
         buttonContainerStyle={[
@@ -94,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Train;
+export default ChooseActivity;

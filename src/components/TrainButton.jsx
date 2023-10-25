@@ -12,7 +12,7 @@ const TrainButton = () => {
   const screenName = mainStack?.state?.routes?.[mainStack?.state?.index]?.name;
 
   const onPress = () =>
-    navigation.navigate('TrainMe', {
+    navigation.navigate('ChooseActivity', {
       from: screenName || 'Home',
     });
 
