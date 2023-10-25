@@ -1,15 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import {DimUtils} from '../utils/DimensionUtils';
 import {WIDTH, colors} from '../assets/constants';
 
-const ActivityItem = ({item}) => {
+const ActivityItem = ({item, onPress, isSelected}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, isSelected && styles.selected]}>
       <Image source={item.img} style={styles.img} />
       <Text style={styles.label}>{item.label}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -35,6 +37,10 @@ const styles = StyleSheet.create({
     tintColor: colors.purple,
     width: DimUtils.getDP(48),
     height: DimUtils.getDP(48),
+  },
+  selected: {
+    borderWidth: 1,
+    borderColor: colors.purple,
   },
 });
 
