@@ -9,6 +9,7 @@ import Stats from '../screens/Stats';
 import {images} from '../assets/images';
 import Profile from '../screens/Profile';
 import SetGoal from '../screens/SetGoal';
+import Results from '../screens/Results';
 import Activity from '../screens/Activity';
 import Train from '../screens/ChooseActivity';
 import {DimUtils} from '../utils/DimensionUtils';
@@ -106,13 +107,16 @@ const BottomStack = () => {
 const Stack = createNativeStackNavigator();
 
 export const Navigation = () => {
-  const options = {
+  const slideRight = {
     animation: 'slide_from_right',
   };
 
-  const optionsBottom = {
-    animation: 'slide_from_bottom',
+  const gestureDisabled = {
     gestureEnabled: false,
+  };
+
+  const slideBottom = {
+    animation: 'slide_from_bottom',
   };
 
   return (
@@ -121,24 +125,58 @@ export const Navigation = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Main" component={BottomStack} />
-      <Stack.Screen name="Account" component={EditAccount} options={options} />
-      <Stack.Screen name="SetGoal" component={SetGoal} options={options} />
+      <Stack.Screen
+        name="Account"
+        component={EditAccount}
+        options={{
+          ...slideRight,
+        }}
+      />
+      <Stack.Screen
+        name="SetGoal"
+        component={SetGoal}
+        options={{
+          ...slideRight,
+        }}
+      />
       <Stack.Screen
         name="HealthDetails"
         component={HealthDetails}
-        options={options}
+        options={{
+          ...slideRight,
+        }}
       />
       <Stack.Screen
         name="Notifications"
         component={Notifications}
-        options={options}
+        options={{
+          ...slideRight,
+        }}
       />
       <Stack.Screen
         name="ChooseActivity"
         component={Train}
-        options={optionsBottom}
+        options={{
+          ...slideBottom,
+          ...gestureDisabled,
+        }}
       />
-      <Stack.Screen name="Activity" component={Activity} options={options} />
+      <Stack.Screen
+        name="Activity"
+        component={Activity}
+        options={{
+          ...slideRight,
+          ...gestureDisabled,
+        }}
+      />
+      <Stack.Screen
+        name="Results"
+        component={Results}
+        options={{
+          ...slideRight,
+          ...gestureDisabled,
+        }}
+      />
     </Stack.Navigator>
   );
 };
