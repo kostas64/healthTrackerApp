@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   timer: {
     color: colors.purple,
-    fontSize: DimUtils.getFontSize(54),
+    fontSize: DimUtils.getFontSize(56),
     fontFamily: 'Rubik-Medium',
   },
   timerContainer: {
