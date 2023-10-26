@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.lightGrey,
   },
-  sapce: {
+  space: {
     width: DimUtils.getDP(16),
   },
 });
