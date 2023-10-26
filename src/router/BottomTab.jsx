@@ -123,6 +123,7 @@ export const Navigation = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        orientation: 'portrait',
       }}>
       <Stack.Screen name="Main" component={BottomStack} />
       <Stack.Screen
