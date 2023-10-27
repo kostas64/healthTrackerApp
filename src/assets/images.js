@@ -9,6 +9,7 @@ const target = require('./images/target.png');
 const calendar = require('./images/calendar.png');
 const edit = require('./images/edit.png');
 const bin = require('./images/bin.png');
+const personWalk = require('./images/person-walking.gif');
 
 const badgeBlue1 = require('./images/badge_bl_1.png');
 const badgeBlue2 = require('./images/badge_bl_2.png');
@@ -73,4 +74,5 @@ export const images = {
   snowboarding,
   swimming,
   tennis,
+  personWalk,
 };
