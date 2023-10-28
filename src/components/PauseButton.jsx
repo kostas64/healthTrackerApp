@@ -4,9 +4,12 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {colors} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
 
-const PauseButton = ({onPress}) => {
+const PauseButton = ({onPress, disabled}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={disabled}
+      style={styles.container}>
       <View style={[styles.line, styles.space]} />
       <View style={styles.line} />
     </TouchableOpacity>

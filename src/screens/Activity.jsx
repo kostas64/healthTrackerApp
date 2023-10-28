@@ -137,7 +137,11 @@ const Activity = ({navigation, route}) => {
 
         {/* Pause button */}
         <View style={styles.pauseBtnContainer}>
-          <TimerButtons onPress={onPress} onPressFinish={onPressFinish} />
+          <TimerButtons
+            onPress={onPress}
+            disabledPause={!isRunning}
+            onPressFinish={onPressFinish}
+          />
         </View>
       </View>
 

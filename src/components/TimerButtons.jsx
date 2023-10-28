@@ -13,7 +13,7 @@ import StopButton from './StopButton';
 import PauseButton from './PauseButton';
 import {DimUtils} from '../utils/DimensionUtils';
 
-const TimerButtons = ({onPress, onPressFinish}) => {
+const TimerButtons = ({onPress, disabledPause, onPressFinish}) => {
   const scalePause = useSharedValue(1);
   const scalePlay = useSharedValue(0);
 
@@ -65,7 +65,7 @@ const TimerButtons = ({onPress, onPressFinish}) => {
         <StopButton onPress={onPressFinish} />
       </Animated.View>
       <Animated.View style={animPauseStyle}>
-        <PauseButton onPress={fadeOutPause} />
+        <PauseButton disabled={disabledPause} onPress={fadeOutPause} />
       </Animated.View>
     </View>
   );
