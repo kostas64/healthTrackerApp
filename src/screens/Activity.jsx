@@ -10,26 +10,51 @@ import TimerButtons from '../components/TimerButtons';
 import CustomBottomSheet from '../components/CustomBottomSheet';
 import FinishActivityModal from '../components/FinishActivityModal';
 
-const Activity = ({navigation}) => {
+const Activity = ({navigation, route}) => {
   //Disable back button from Android
   useBackAction();
 
+  const {activity} = route?.params || {};
+
+  const interval = useRef();
   const watchRef = useRef();
   const bottomSheetRef = useRef();
+
+  const [speeds, setSpeeds] = useState([]);
+  const [curSpeed, setCurSpeed] = useState('0,00');
+  const [avgSpeed, setAvgSpeed] = useState('0,00');
+  const [distance, setDistance] = useState(0);
+
+  const [isRunning, setIsRunning] = useState(true);
   const [modalContent, setModalContent] = useState(null);
+
+  const distanceFormated = distance.toFixed(2)?.replace('.', ',');
 
   const onPress = () => {
     if (watchRef?.current?.isRunning) {
       watchRef?.current?.pause();
+      setIsRunning(false);
     } else {
       watchRef?.current?.resume();
+      setIsRunning(true);
     }
   };
 
   const onPressFinish = () => {
     const onPressDone = () => {
+      const time = watchRef?.current?.extractTime();
+
       onCloseBottomSheet();
-      setTimeout(() => navigation.navigate('Results'), 200);
+      setTimeout(
+        () =>
+          navigation.navigate('Results', {
+            activity,
+            avgSpeed,
+            distance,
+            time,
+          }),
+        200,
+      );
     };
 
     setModalContent(
@@ -54,6 +79,35 @@ const Activity = ({navigation}) => {
     watchRef.current?.start();
   }, []);
 
+  useEffect(() => {
+    if (isRunning) {
+      interval.current = setInterval(() => {
+        setCurSpeed(() => {
+          const value = Number(Math.random() * 15)?.toFixed(2);
+          const valueFormatted = `${value}`?.replace('.', ',');
+          setSpeeds(old => [...old, Number(value)]);
+          setDistance(old => Number(old) + Number(value) * 0.001);
+          return valueFormatted;
+        });
+      }, 3600);
+    } else {
+      clearInterval(interval.current);
+      interval.current = null;
+    }
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (isRunning) {
+      setAvgSpeed(() => {
+        const value = Number(
+          speeds?.reduce((acc, cur) => acc + cur, 0) / speeds?.length || 0,
+        )?.toFixed(2);
+
+        return `${value}`?.replace('.', ',');
+      });
+    }
+  }, [curSpeed]);
+
   return (
     <Screen noHeader renderInsetPaddings containerStyle={styles.screen}>
       {/* Timer */}
@@ -64,7 +118,7 @@ const Activity = ({navigation}) => {
 
       {/* Distance */}
       <View style={styles.disContainer}>
-        <Text style={styles.distance}>0,00</Text>
+        <Text style={styles.distance}>{distanceFormated}</Text>
         <Text style={styles.sectionLabel}>KILOMETERS</Text>
       </View>
 
@@ -72,11 +126,11 @@ const Activity = ({navigation}) => {
         {/* Current speed | Avg Speed */}
         <View style={styles.speedsContainer}>
           <View style={styles.speedContainer}>
-            <Text style={styles.speedLabel}>0,00</Text>
+            <Text style={styles.speedLabel}>{curSpeed}</Text>
             <Text style={styles.sectionLabel}>CUR SPEED</Text>
           </View>
           <View style={styles.speedContainer}>
-            <Text style={styles.speedLabel}>0,00</Text>
+            <Text style={styles.speedLabel}>{avgSpeed}</Text>
             <Text style={styles.sectionLabel}>AVG SPEED</Text>
           </View>
         </View>
