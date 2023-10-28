@@ -10,8 +10,8 @@ import Animated, {
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-import {WIDTH} from '../assets/constants';
 import {DimUtils} from '../utils/DimensionUtils';
+import {WIDTH, colors} from '../assets/constants';
 
 const Badge = ({item}) => {
   const scale = useSharedValue(1);
@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: (WIDTH - 80) / 2,
     height: DimUtils.getDP(180),
-    backgroundColor: 'rgba(0,0,0,0.03)',
+    borderWidth: 1,
+    borderColor: colors.lightGrey,
     borderRadius: DimUtils.getDP(32),
   },
   img: {

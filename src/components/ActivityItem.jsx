@@ -9,8 +9,13 @@ const ActivityItem = ({item, onPress, isSelected}) => {
     <TouchableOpacity
       onPress={onPress}
       style={[styles.container, isSelected && styles.selected]}>
-      <Image source={item.img} style={styles.img} />
-      <Text style={styles.label}>{item.label}</Text>
+      <Image
+        source={item.img}
+        style={[styles.img, isSelected && styles.selectedTint]}
+      />
+      <Text style={[styles.label, isSelected && styles.selectedLabel]}>
+        {item.label}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -23,7 +28,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: (WIDTH - 80) / 2,
     height: DimUtils.getDP(180),
-    backgroundColor: 'rgba(0,0,0,0.03)',
+    borderWidth: 1,
+    borderColor: colors.lightGrey,
     borderRadius: DimUtils.getDP(32),
   },
   label: {
@@ -39,8 +45,13 @@ const styles = StyleSheet.create({
     height: DimUtils.getDP(40),
   },
   selected: {
-    borderWidth: 1,
-    borderColor: colors.purple,
+    backgroundColor: colors.purple,
+  },
+  selectedTint: {
+    tintColor: 'white',
+  },
+  selectedLabel: {
+    color: 'white',
   },
 });
 
