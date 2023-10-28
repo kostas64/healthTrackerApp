@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
   },
   img: {
     tintColor: colors.purple,
-    width: DimUtils.getDP(48),
-    height: DimUtils.getDP(48),
+    width: DimUtils.getDP(40),
+    height: DimUtils.getDP(40),
   },
   selected: {
     borderWidth: 1,
