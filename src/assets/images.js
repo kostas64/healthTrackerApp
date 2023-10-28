@@ -10,6 +10,10 @@ const calendar = require('./images/calendar.png');
 const edit = require('./images/edit.png');
 const bin = require('./images/bin.png');
 const personWalk = require('./images/person-walking.gif');
+const share = require('./images/share.png');
+const clock = require('./images/time.png');
+const speedometer = require('./images/speedometer.png');
+const distance = require('./images/direction.png');
 
 const badgeBlue1 = require('./images/badge_bl_1.png');
 const badgeBlue2 = require('./images/badge_bl_2.png');
@@ -47,13 +51,18 @@ export const images = {
   me,
   heart,
   sleep,
+  clock,
   drop,
   edit,
   bin,
+  clock,
   shoe,
   flame,
+  share,
   target,
+  distance,
   calendar,
+  speedometer,
   badgeBlue1,
   badgeBlue2,
   badgeGreen1,
