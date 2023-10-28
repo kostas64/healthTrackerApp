@@ -17,6 +17,7 @@ const Achievements = () => {
         data={badges}
         numColumns={2}
         renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
       />
     </Screen>
