@@ -2,7 +2,7 @@ import React from 'react';
 import * as shape from 'd3-shape';
 import {AreaChart} from 'react-native-svg-charts';
 import {StackedBarChart} from 'react-native-svg-charts';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {Gradient} from './Gradient';
 import ProgressBox from './ProgressBox';
@@ -31,8 +31,7 @@ const Box = ({
   };
 
   return (
-    <TouchableOpacity
-      style={[border, {backgroundColor: bgColor}, styles.container]}>
+    <View style={[border, {backgroundColor: bgColor}, styles.container]}>
       {/* Label & Icon */}
       <View style={styles.rowBetween}>
         <Text style={[styles.title, textColor]}>{title}</Text>
@@ -77,7 +76,7 @@ const Box = ({
         <Text style={[styles.title, textColor]}>{bottomTitle}</Text>
         <Text style={styles.footerSubtitle}>{bottomSubtitle}</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -113,8 +112,8 @@ const styles = StyleSheet.create({
     top: 42,
   },
   icon: {
-    width: DimUtils.getDP(22),
-    height: DimUtils.getDP(22),
+    width: DimUtils.getDP(24),
+    height: DimUtils.getDP(24),
   },
   lineChart: {
     height: 106,
