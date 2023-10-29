@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-const dataInfo = [
+export const dataInfo = [
   {
     steps: '12,904',
     distance: '9,830',
