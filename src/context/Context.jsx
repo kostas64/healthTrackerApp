@@ -4,6 +4,27 @@ export const Context = React.createContext({});
 
 const ContextProvider = ({children}) => {
   const [goalSteps, setGoalSteps] = useState(10000);
+
+  const [notifications, setNotifications] = useState([
+    {
+      title: 'Daily Coaching',
+      caption: 'Get notifications that help you complete your Activity goals.',
+      enabled: true,
+    },
+    {
+      title: 'Goal Completions',
+      caption:
+        'Receive a notification when you close your Move ring or earn an award.',
+      enabled: true,
+    },
+    {
+      title: 'Activity Sharing',
+      caption:
+        'Receive a notification when someone who shares Activity with you completes a workout or earns an award.',
+      enabled: true,
+    },
+  ]);
+
   const [user, setUser] = useState({
     name: 'Konstantinos',
     surname: 'Efkarpidis',
@@ -21,6 +42,8 @@ const ContextProvider = ({children}) => {
         setUser,
         goalSteps,
         setGoalSteps,
+        notifications,
+        setNotifications,
       }}>
       {children}
     </Context.Provider>

@@ -1,7 +1,7 @@
 import * as shape from 'd3-shape';
-import React, {useEffect, useState} from 'react';
 import {AreaChart} from 'react-native-svg-charts';
 import {StackedBarChart} from 'react-native-svg-charts';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {Gradient} from './Gradient';
@@ -22,6 +22,7 @@ const Box = ({
   tintColor,
   progress,
 }) => {
+  const interval = useRef();
   const [bpmState, setBpmState] = useState(bpm);
 
   const bgColor = isDark ? colors.purple : 'white';
@@ -36,12 +37,20 @@ const Box = ({
   };
 
   useEffect(() => {
-    !!hasLinear &&
-      setInterval(() => {
+    if (hasLinear) {
+      interval.current = setInterval(() => {
         const rand = Math.floor(Math.random() * (125 - 50 + 1)) + 50;
 
         setBpmState(old => [...old.slice(1), rand]);
       }, 5000);
+    }
+
+    return () => {
+      if (hasLinear) {
+        interval.current = null;
+        clearInterval(interval.current);
+      }
+    };
   }, []);
 
   return (
