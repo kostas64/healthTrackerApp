@@ -1,5 +1,5 @@
-import React from 'react';
 import * as shape from 'd3-shape';
+import React, {useEffect, useState} from 'react';
 import {AreaChart} from 'react-native-svg-charts';
 import {StackedBarChart} from 'react-native-svg-charts';
 import {View, Text, StyleSheet, Image} from 'react-native';
@@ -22,13 +22,27 @@ const Box = ({
   tintColor,
   progress,
 }) => {
+  const [bpmState, setBpmState] = useState(bpm);
+
   const bgColor = isDark ? colors.purple : 'white';
   const textColor = {color: isDark ? 'white' : 'black'};
+  const bottomValue = !!hasLinear
+    ? bpmState?.[bpmState?.length - 1]
+    : bottomTitle;
 
   const border = !isDark && {
     borderColor: colors.lightGrey,
     borderWidth: 1,
   };
+
+  useEffect(() => {
+    !!hasLinear &&
+      setInterval(() => {
+        const rand = Math.floor(Math.random() * (125 - 50 + 1)) + 50;
+
+        setBpmState(old => [...old.slice(1), rand]);
+      }, 5000);
+  }, []);
 
   return (
     <View style={[border, {backgroundColor: bgColor}, styles.container]}>
@@ -43,7 +57,7 @@ const Box = ({
           style={styles.lineChart}
           gridMin={4}
           gridMax={200}
-          data={bpm}
+          data={bpmState}
           curve={shape.curveNatural}
           svg={{
             strokeWidth: 3,
@@ -73,7 +87,7 @@ const Box = ({
 
       {/* Bottom Part */}
       <View style={footerContainer}>
-        <Text style={[styles.title, textColor]}>{bottomTitle}</Text>
+        <Text style={[styles.title, textColor]}>{bottomValue}</Text>
         <Text style={styles.footerSubtitle}>{bottomSubtitle}</Text>
       </View>
     </View>

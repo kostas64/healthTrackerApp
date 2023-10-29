@@ -89,4 +89,4 @@ const ProgressBox = props => {
   );
 };
 
-export default ProgressBox;
+export default React.memo(ProgressBox);

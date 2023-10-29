@@ -3,9 +3,9 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 
 import Box from '../components/Box';
 import {images} from '../assets/images';
-import {getDates} from '../utils/Dates';
 import Screen from '../components/Screen';
 import {Context} from '../context/Context';
+import {dataInfo, getDates} from '../utils/Dates';
 import {L_SPACE, XL_SPACE, colors} from '../assets/constants';
 
 const Home = () => {
@@ -45,7 +45,7 @@ const Home = () => {
               icon={images.flame}
               tintColor={colors.orange}
               title={'Calories'}
-              bottomTitle={450.72}
+              bottomTitle={dataInfo?.[7]?.calories}
               bottomSubtitle={'kcal'}
               footerContainer={styles.marginTopXXL}
             />
