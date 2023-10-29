@@ -25,7 +25,15 @@ const Results = ({navigation, route}) => {
   useBackAction();
 
   const {activity, avgSpeed, distance, time} = route?.params || {};
-  const timeFormated = time?.toString()?.replace('PT', '')?.toLowerCase();
+  const timeFormated = `${
+    time
+      ?.toString()
+      ?.replace('PT', '')
+      ?.toLowerCase()
+      ?.replace('h', 'h ')
+      ?.replace('m', 'm ')
+      ?.split('.')?.[0]
+  }s`;
   const distanceFormated = `${Number(distance).toFixed(2)} km`;
   const avgSpeedFormated = `${avgSpeed?.replace(',', '.')} km/h`;
   const caloriesFormated = `${getCaloriesBurned(activity, distance).toFixed(

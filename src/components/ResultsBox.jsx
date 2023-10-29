@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: DimUtils.getFontSize(20),
-    fontFamily: 'Rubik-Regular',
+    fontFamily: 'Rubik-SemiBold',
   },
 });
 
