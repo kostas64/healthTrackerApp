@@ -11,6 +11,7 @@ const MyDatePicker = ({date, onChange, onPressDone}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
+        style={styles.alingEnd}
         onPress={() => onPressDone(dateSt)}
         hitSlop={styles.doneButton}>
         <Text style={styles.doneLabel}>Done</Text>
@@ -33,6 +34,9 @@ const MyDatePicker = ({date, onChange, onPressDone}) => {
 };
 
 const styles = StyleSheet.create({
+  alingEnd: {
+    alignSelf: 'flex-end',
+  },
   container: {
     marginHorizontal: DimUtils.getDP(24),
   },

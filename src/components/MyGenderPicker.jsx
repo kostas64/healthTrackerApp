@@ -14,7 +14,7 @@ const MyGenderPicker = ({gender, onChange, onPressDone, contHeight}) => {
     <View>
       {/* Done button */}
       <TouchableOpacity
-        style={{marginRight: DimUtils.getDP(24)}}
+        style={styles.alignEnd}
         onPress={() => onPressDone(selectedLanguage)}
         hitSlop={styles.doneButton}>
         <Text style={styles.doneLabel}>Done</Text>
@@ -38,6 +38,10 @@ const MyGenderPicker = ({gender, onChange, onPressDone, contHeight}) => {
 };
 
 const styles = StyleSheet.create({
+  alignEnd: {
+    alignSelf: 'flex-end',
+    marginRight: DimUtils.getDP(24),
+  },
   doneButton: {
     top: DimUtils.getDP(16),
     left: DimUtils.getDP(16),
