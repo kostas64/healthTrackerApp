@@ -15,6 +15,7 @@
 		1BB908A33DB34FB5B03A28D1 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA5F6ED183E6473EB584AB33 /* Rubik-ExtraBold.ttf */; };
 		2EB7E4DB46BE46BB9E21AE75 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 542D72DDB70447018A052DA4 /* Rubik-Medium.ttf */; };
 		683C3C2E16934379A10CB2F7 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F884159195043A3B594CAF0 /* Rubik-Black.ttf */; };
+		707786222AEED44800DDA9C9 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 707786212AEED44800DDA9C9 /* BootSplash.storyboard */; };
 		7112FC7378794DED9E8F10D0 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8ACE3EAF9F92473E91E9BF26 /* Rubik-Light.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-HealthTrackerApp-HealthTrackerAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-HealthTrackerApp-HealthTrackerAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -53,6 +54,7 @@
 		5709B34CF0A7D63546082F79 /* Pods-HealthTrackerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthTrackerApp.release.xcconfig"; path = "Target Support Files/Pods-HealthTrackerApp/Pods-HealthTrackerApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-HealthTrackerApp-HealthTrackerAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthTrackerApp-HealthTrackerAppTests.debug.xcconfig"; path = "Target Support Files/Pods-HealthTrackerApp-HealthTrackerAppTests/Pods-HealthTrackerApp-HealthTrackerAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-HealthTrackerApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HealthTrackerApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		707786212AEED44800DDA9C9 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = HealthTrackerApp/BootSplash.storyboard; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HealthTrackerApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-HealthTrackerApp-HealthTrackerAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HealthTrackerApp-HealthTrackerAppTests.release.xcconfig"; path = "Target Support Files/Pods-HealthTrackerApp-HealthTrackerAppTests/Pods-HealthTrackerApp-HealthTrackerAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		8ACE3EAF9F92473E91E9BF26 /* Rubik-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Light.ttf"; path = "../assets/fonts/Rubik-Light.ttf"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				707786212AEED44800DDA9C9 /* BootSplash.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = HealthTrackerApp;
@@ -276,6 +279,7 @@
 				683C3C2E16934379A10CB2F7 /* Rubik-Black.ttf in Resources */,
 				A833352B58C244138A85B7E1 /* Rubik-Bold.ttf in Resources */,
 				1BB908A33DB34FB5B03A28D1 /* Rubik-ExtraBold.ttf in Resources */,
+				707786222AEED44800DDA9C9 /* BootSplash.storyboard in Resources */,
 				7112FC7378794DED9E8F10D0 /* Rubik-Light.ttf in Resources */,
 				2EB7E4DB46BE46BB9E21AE75 /* Rubik-Medium.ttf in Resources */,
 				979DEFE0A3CC4CC189A3DEB8 /* Rubik-Regular.ttf in Resources */,
@@ -638,10 +642,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -711,10 +712,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
