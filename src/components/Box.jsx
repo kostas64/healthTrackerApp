@@ -1,12 +1,13 @@
 import * as shape from 'd3-shape';
 import {AreaChart} from 'react-native-svg-charts';
 import {StackedBarChart} from 'react-native-svg-charts';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {Gradient} from './Gradient';
 import BoxFooter from './BoxFooter';
 import ProgressBox from './ProgressBox';
+import {Context} from '../context/Context';
 import {DimUtils} from '../utils/DimensionUtils';
 import LoadingHeartRate from './LoadingHeartRate';
 import {water, waterClrs, waterKeys} from '../assets/data';
@@ -25,7 +26,7 @@ const Box = ({
   progress,
 }) => {
   const interval = useRef();
-  const [bpmState, setBpmState] = useState([]);
+  const {bpmState, setBpmState} = useContext(Context);
 
   const bgColor = isDark ? colors.purple : 'white';
   const textColor = {color: isDark ? 'white' : 'black'};
@@ -41,7 +42,7 @@ const Box = ({
   const showFooter = !hasLinear || bpmState?.length >= 5;
 
   useEffect(() => {
-    if (hasLinear) {
+    if (hasLinear && bpmState?.length === 0) {
       interval.current = setInterval(() => {
         const rand = Math.floor(Math.random() * (125 - 50 + 1)) + 50;
 
@@ -54,13 +55,6 @@ const Box = ({
         });
       }, 5000);
     }
-
-    return () => {
-      if (hasLinear) {
-        interval.current = null;
-        clearInterval(interval.current);
-      }
-    };
   }, []);
 
   return (

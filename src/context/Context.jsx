@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 export const Context = React.createContext({});
 
 const ContextProvider = ({children}) => {
+  const [bpmState, setBpmState] = useState([]);
   const [goalSteps, setGoalSteps] = useState(10000);
 
   const [notifications, setNotifications] = useState([
@@ -40,6 +41,8 @@ const ContextProvider = ({children}) => {
       value={{
         user,
         setUser,
+        bpmState,
+        setBpmState,
         goalSteps,
         setGoalSteps,
         notifications,
