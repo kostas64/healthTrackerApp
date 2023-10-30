@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     height: DimUtils.getDP(40),
   },
   selected: {
+    borderWidth: 0,
     backgroundColor: colors.purple,
   },
   selectedTint: {
