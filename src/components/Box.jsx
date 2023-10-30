@@ -5,9 +5,11 @@ import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {Gradient} from './Gradient';
+import BoxFooter from './BoxFooter';
 import ProgressBox from './ProgressBox';
 import {DimUtils} from '../utils/DimensionUtils';
-import {bpm, water, waterClrs, waterKeys} from '../assets/data';
+import LoadingHeartRate from './LoadingHeartRate';
+import {water, waterClrs, waterKeys} from '../assets/data';
 import {L_SPACE, WIDTH, XL_SPACE, colors} from '../assets/constants';
 
 const Box = ({
@@ -23,7 +25,7 @@ const Box = ({
   progress,
 }) => {
   const interval = useRef();
-  const [bpmState, setBpmState] = useState(bpm);
+  const [bpmState, setBpmState] = useState([]);
 
   const bgColor = isDark ? colors.purple : 'white';
   const textColor = {color: isDark ? 'white' : 'black'};
@@ -36,12 +38,20 @@ const Box = ({
     borderWidth: 1,
   };
 
+  const showFooter = !hasLinear || bpmState?.length >= 5;
+
   useEffect(() => {
     if (hasLinear) {
       interval.current = setInterval(() => {
         const rand = Math.floor(Math.random() * (125 - 50 + 1)) + 50;
 
-        setBpmState(old => [...old.slice(1), rand]);
+        setBpmState(old => {
+          if (old.length <= 19) {
+            return [...old, rand];
+          } else {
+            return [...old.slice(1), rand];
+          }
+        });
       }, 5000);
     }
 
@@ -61,18 +71,14 @@ const Box = ({
         <Image source={icon} style={[styles.icon, {tintColor}]} />
       </View>
 
-      {hasLinear && (
+      {hasLinear && bpmState?.length >= 5 && (
         <AreaChart
           style={styles.lineChart}
           gridMin={4}
           gridMax={200}
           data={bpmState}
           curve={shape.curveNatural}
-          svg={{
-            strokeWidth: 3,
-            stroke: colors.lightRed,
-            fill: 'url(#gradient)',
-          }}>
+          svg={styles.svg}>
           <Gradient />
         </AreaChart>
       )}
@@ -95,10 +101,16 @@ const Box = ({
       )}
 
       {/* Bottom Part */}
-      <View style={footerContainer}>
-        <Text style={[styles.title, textColor]}>{bottomValue}</Text>
-        <Text style={styles.footerSubtitle}>{bottomSubtitle}</Text>
-      </View>
+      {showFooter ? (
+        <BoxFooter
+          textColor={textColor}
+          bottomValue={bottomValue}
+          bottomSubtitle={bottomSubtitle}
+          footerContainer={footerContainer}
+        />
+      ) : (
+        <LoadingHeartRate />
+      )}
     </View>
   );
 };
@@ -125,15 +137,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik-Regular',
     color: colors.lightGrey,
   },
-  percentageLabel: {
-    fontSize: DimUtils.getFontSize(18),
-    fontWeight: '700',
-    textAlign: 'center',
-    position: 'absolute',
-    alignSelf: 'center',
-    color: 'white',
-    top: 42,
-  },
   icon: {
     width: DimUtils.getDP(24),
     height: DimUtils.getDP(24),
@@ -147,6 +150,11 @@ const styles = StyleSheet.create({
   },
   chartHeight: {
     height: 106,
+  },
+  svg: {
+    strokeWidth: 3,
+    stroke: colors.lightRed,
+    fill: 'url(#gradient)',
   },
 });
 

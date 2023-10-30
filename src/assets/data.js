@@ -1,10 +1,5 @@
 import {colors} from './constants';
 
-export const bpm = [
-  80, 94, 125, 138, 106, 104, 92, 76, 72, 96, 124, 144, 160, 152, 148, 129, 118,
-  100, 90, 80, 76, 84, 94, 104,
-];
-
 export const waterKeys = ['apples', 'bananas'];
 export const waterClrs = [colors.purple, colors.veryLightPurple];
 
